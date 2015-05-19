@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:context="http://www.springframework.org/schema/context" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
+    <context:property-placeholder location="spk2.properties,global.properties" ignore-resource-not-found="true"/>
+    <flow name="mule-spk-2-query-stringFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="${test2.http.port:8081}" doc:name="HTTP"/>
+        <set-payload value="Hola #[message.inboundProperties.get(&quot;http.query.params&quot;).get(&quot;nombre&quot;)]!" doc:name="Set Payload"/>
+    </flow>
+</mule>

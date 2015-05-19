@@ -1,0 +1,937 @@
+INFO  2015-05-18 12:33:54,779 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'mule-spk-2-query-string'               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:33:55,326 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising RegistryBroker
+INFO  2015-05-18 12:33:55,877 [main] org.mule.config.spring.MuleArtifactContext: Refreshing org.mule.config.spring.MuleArtifactContext@51c557cd: startup date [Mon May 18 12:33:55 CEST 2015]; root of context hierarchy
+WARN  2015-05-18 12:33:59,974 [main] org.mule.module.ognl.expression.OgnlExpressionEvaluator: OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+INFO  2015-05-18 12:34:02,588 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx2.log
+INFO  2015-05-18 12:34:02,636 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx2.log
+INFO  2015-05-18 12:34:03,037 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising model: _muleSystemModel
+WARN  2015-05-18 12:34:03,223 [main] org.springframework.beans.GenericTypeAwarePropertyDescriptor: Invalid JavaBean property 'port' being accessed! Ambiguous write methods found next to actually used [public void org.mule.endpoint.URIBuilder.setPort(java.lang.String)]: [public void org.mule.endpoint.URIBuilder.setPort(int)]
+WARN  2015-05-18 12:34:03,365 [main] org.mule.transport.http.HttpConnector: HTTP transport is deprecated and will be removed in Mule 4.0. Use HTTP module instead.
+INFO  2015-05-18 12:34:03,655 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising connector: connector.http.mule.default
+INFO  2015-05-18 12:34:03,831 [main] org.mule.construct.FlowConstructLifecycleManager: Initialising flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:34:03,832 [main] org.mule.exception.DefaultMessagingExceptionStrategy: Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@5725cc1
+INFO  2015-05-18 12:34:03,916 [main] org.mule.processor.SedaStageLifecycleManager: Initialising service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:34:03,973 [main] org.mule.config.spring.SpringXmlConfigurationBuilder: Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:34:03,973 [main] org.mule.config.builders.AutoConfigurationBuilder: Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:34:03,975 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:34:03,978 [main] org.mule.util.queue.QueueXaResourceManager: Starting ResourceManager
+INFO  2015-05-18 12:34:03,978 [main] org.mule.util.queue.QueueXaResourceManager: Started ResourceManager
+INFO  2015-05-18 12:34:04,016 [main] org.mule.transport.http.HttpConnector: Connected: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=2d273bd4
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:34:04,016 [main] org.mule.transport.http.HttpConnector: Starting: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=2d273bd4
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:34:04,018 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting connector: connector.http.mule.default
+INFO  2015-05-18 12:34:04,026 [main] org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:34:04,028 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting model: _muleSystemModel
+INFO  2015-05-18 12:34:04,031 [main] org.mule.construct.FlowConstructLifecycleManager: Starting flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:34:04,033 [main] org.mule.processor.SedaStageLifecycleManager: Starting service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:34:04,066 [main] org.mule.transport.http.HttpConnector: Registering listener: mule-spk-2-query-stringFlow on endpointUri: http://localhost:8081
+INFO  2015-05-18 12:34:04,099 [main] org.mule.transport.service.DefaultTransportServiceDescriptor: Loading default response transformer: org.mule.transport.http.transformers.MuleMessageToHttpResponse
+INFO  2015-05-18 12:34:04,209 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:34:04,222 [main] org.mule.transport.http.HttpMessageReceiver: Connecting clusterizable message receiver
+INFO  2015-05-18 12:34:04,260 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:34:04,260 [main] org.mule.transport.http.HttpMessageReceiver: Starting clusterizable message receiver
+INFO  2015-05-18 12:34:04,300 [main] org.mule.module.management.agent.WrapperManagerAgent: This JVM hasn't been launched by the wrapper, the agent will not run.
+INFO  2015-05-18 12:34:04,350 [main] org.mule.module.management.agent.AbstractJmxAgent: Attempting to register service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=connector.http.mule.default,name="endpoint.http.localhost.8081"
+INFO  2015-05-18 12:34:04,351 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Endpoint Service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=connector.http.mule.default,name="endpoint.http.localhost.8081"
+INFO  2015-05-18 12:34:04,353 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Connector Service with name Mule.mule-spk-2-query-string:type=Connector,name="connector.http.mule.default.1"
+INFO  2015-05-18 12:34:04,359 [main] org.mule.DefaultMuleContext: 
+**********************************************************************
+* Application: mule-spk-2-query-string                               *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   Batch module default engine                                      *
+*   Clustering Agent                                                 *
+*   JMX Agent                                                        *
+**********************************************************************
+ERROR 2015-05-18 12:35:03,115 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+WARN  2015-05-18 12:35:03,415 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.transport.http.HttpMessageProcessTemplate: Exception sending http response after error: Software caused connection abort: socket write error
+ERROR 2015-05-18 12:35:03,418 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.exception.DefaultSystemExceptionStrategy: 
+********************************************************************************
+Message               : Software caused connection abort: socket write error (java.net.SocketException)
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. Software caused connection abort: socket write error (java.net.SocketException)
+  java.net.SocketOutputStream:-2 (null)
+2. Software caused connection abort: socket write error (java.net.SocketException) (org.mule.api.DefaultMuleException)
+  org.mule.transport.http.HttpMessageProcessTemplate:175 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/DefaultMuleException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+java.net.SocketException: Software caused connection abort: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:113)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:159)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:36:14,733 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:36:14,754 [[mule-spk-2-query-string].connector.http.mule.default.receiver.03] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+WARN  2015-05-18 12:36:14,763 [[mule-spk-2-query-string].connector.http.mule.default.receiver.03] org.mule.transport.http.HttpMessageProcessTemplate: Exception sending http response after error: Software caused connection abort: socket write error
+ERROR 2015-05-18 12:36:14,768 [[mule-spk-2-query-string].connector.http.mule.default.receiver.03] org.mule.exception.DefaultSystemExceptionStrategy: 
+********************************************************************************
+Message               : Software caused connection abort: socket write error (java.net.SocketException)
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. Software caused connection abort: socket write error (java.net.SocketException)
+  java.net.SocketOutputStream:-2 (null)
+2. Software caused connection abort: socket write error (java.net.SocketException) (org.mule.api.DefaultMuleException)
+  org.mule.transport.http.HttpMessageProcessTemplate:175 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/DefaultMuleException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+java.net.SocketException: Software caused connection abort: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:113)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:159)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:36:14,798 [[mule-spk-2-query-string].connector.http.mule.default.receiver.04] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "http.query.string" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: http]
+[Near : {... http.query.string ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+INFO  2015-05-18 12:36:14,817 [Mule.app.deployer.monitor.1.thread.1] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Stopping app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:14,820 [Mule.app.deployer.monitor.1.thread.1] org.mule.construct.FlowConstructLifecycleManager: Stopping flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:36:14,820 [Mule.app.deployer.monitor.1.thread.1] org.mule.transport.http.HttpConnector: Removing listener on endpointUri: http://localhost:8081
+INFO  2015-05-18 12:36:14,852 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Stopping: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:36:14,861 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Disposing: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:36:14,864 [Mule.app.deployer.monitor.1.thread.1] org.mule.processor.SedaStageLifecycleManager: Stopping service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:36:14,906 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Stopping model: _muleSystemModel
+INFO  2015-05-18 12:36:14,913 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Stopping connector: connector.http.mule.default
+INFO  2015-05-18 12:36:14,920 [Mule.app.deployer.monitor.1.thread.1] org.mule.util.queue.QueueXaResourceManager: Stopping ResourceManager
+INFO  2015-05-18 12:36:14,928 [Mule.app.deployer.monitor.1.thread.1] org.mule.util.queue.QueueXaResourceManager: Stopped ResourceManager
+INFO  2015-05-18 12:36:14,937 [Mule.app.deployer.monitor.1.thread.1] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Disposing app 'mule-spk-2-query-string'                  +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:14,942 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Disposing RegistryBroker
+INFO  2015-05-18 12:36:14,948 [Mule.app.deployer.monitor.1.thread.1] org.mule.transport.http.HttpConnector: Disconnected: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=stop
+  this=2d273bd4
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:36:14,952 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Disposing connector: connector.http.mule.default
+INFO  2015-05-18 12:36:14,953 [Mule.app.deployer.monitor.1.thread.1] org.mule.util.monitor.ExpiryMonitor: disposing monitor
+INFO  2015-05-18 12:36:15,003 [Mule.app.deployer.monitor.1.thread.1] org.mule.config.spring.MuleArtifactContext: Closing org.mule.config.spring.MuleArtifactContext@51c557cd: startup date [Mon May 18 12:33:55 CEST 2015]; root of context hierarchy
+INFO  2015-05-18 12:36:15,007 [Mule.app.deployer.monitor.1.thread.1] org.mule.construct.FlowConstructLifecycleManager: Disposing flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:36:15,013 [Mule.app.deployer.monitor.1.thread.1] org.mule.processor.SedaStageLifecycleManager: Disposing service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:36:15,015 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Disposing model: _muleSystemModel
+INFO  2015-05-18 12:36:15,069 [Mule.app.deployer.monitor.1.thread.1] org.mule.DefaultMuleContext: 
+**********************************************************************
+* Application "mule-spk-2-query-string" shut down normally on:       *
+* 18/05/15 12:36                                                     *
+* Up for: 0 days, 0 hours, 2 mins, 11.82 sec                         *
+**********************************************************************
+INFO  2015-05-18 12:36:15,435 [Mule.app.deployer.monitor.1.thread.1] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'mule-spk-2-query-string'               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:15,558 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Initialising RegistryBroker
+INFO  2015-05-18 12:36:15,590 [Mule.app.deployer.monitor.1.thread.1] org.mule.config.spring.MuleArtifactContext: Refreshing org.mule.config.spring.MuleArtifactContext@5f425b3b: startup date [Mon May 18 12:36:15 CEST 2015]; root of context hierarchy
+INFO  2015-05-18 12:36:17,023 [Mule.app.deployer.monitor.1.thread.1] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx2.log
+INFO  2015-05-18 12:36:17,030 [Mule.app.deployer.monitor.1.thread.1] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx2.log
+INFO  2015-05-18 12:36:17,080 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Initialising model: _muleSystemModel
+INFO  2015-05-18 12:36:17,132 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Initialising connector: connector.http.mule.default
+INFO  2015-05-18 12:36:17,174 [Mule.app.deployer.monitor.1.thread.1] org.mule.construct.FlowConstructLifecycleManager: Initialising flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:36:17,174 [Mule.app.deployer.monitor.1.thread.1] org.mule.exception.DefaultMessagingExceptionStrategy: Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@42d2d985
+INFO  2015-05-18 12:36:17,181 [Mule.app.deployer.monitor.1.thread.1] org.mule.processor.SedaStageLifecycleManager: Initialising service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:36:17,195 [Mule.app.deployer.monitor.1.thread.1] org.mule.config.spring.SpringXmlConfigurationBuilder: Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:36:17,196 [Mule.app.deployer.monitor.1.thread.1] org.mule.config.builders.AutoConfigurationBuilder: Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:36:17,196 [Mule.app.deployer.monitor.1.thread.1] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:17,199 [Mule.app.deployer.monitor.1.thread.1] org.mule.util.queue.QueueXaResourceManager: Starting ResourceManager
+INFO  2015-05-18 12:36:17,199 [Mule.app.deployer.monitor.1.thread.1] org.mule.util.queue.QueueXaResourceManager: Started ResourceManager
+INFO  2015-05-18 12:36:17,206 [Mule.app.deployer.monitor.1.thread.1] org.mule.transport.http.HttpConnector: Connected: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=69c1685d
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:36:17,206 [Mule.app.deployer.monitor.1.thread.1] org.mule.transport.http.HttpConnector: Starting: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=69c1685d
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:36:17,207 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Starting connector: connector.http.mule.default
+INFO  2015-05-18 12:36:17,209 [Mule.app.deployer.monitor.1.thread.1] org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:17,210 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Starting model: _muleSystemModel
+INFO  2015-05-18 12:36:17,222 [Mule.app.deployer.monitor.1.thread.1] org.mule.construct.FlowConstructLifecycleManager: Starting flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:36:17,222 [Mule.app.deployer.monitor.1.thread.1] org.mule.processor.SedaStageLifecycleManager: Starting service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:36:17,229 [Mule.app.deployer.monitor.1.thread.1] org.mule.transport.http.HttpConnector: Registering listener: mule-spk-2-query-stringFlow on endpointUri: http://localhost:8081
+INFO  2015-05-18 12:36:17,231 [Mule.app.deployer.monitor.1.thread.1] org.mule.transport.service.DefaultTransportServiceDescriptor: Loading default response transformer: org.mule.transport.http.transformers.MuleMessageToHttpResponse
+INFO  2015-05-18 12:36:17,232 [Mule.app.deployer.monitor.1.thread.1] org.mule.lifecycle.AbstractLifecycleManager: Initialising: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:36:17,233 [Mule.app.deployer.monitor.1.thread.1] org.mule.transport.http.HttpMessageReceiver: Connecting clusterizable message receiver
+INFO  2015-05-18 12:36:41,629 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'mule-spk-2-query-string'               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:42,180 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising RegistryBroker
+INFO  2015-05-18 12:36:42,849 [main] org.mule.config.spring.MuleArtifactContext: Refreshing org.mule.config.spring.MuleArtifactContext@72df520e: startup date [Mon May 18 12:36:42 CEST 2015]; root of context hierarchy
+WARN  2015-05-18 12:36:47,593 [main] org.mule.module.ognl.expression.OgnlExpressionEvaluator: OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+INFO  2015-05-18 12:36:49,762 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx2.log
+INFO  2015-05-18 12:36:49,817 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx2.log
+INFO  2015-05-18 12:36:50,241 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising model: _muleSystemModel
+WARN  2015-05-18 12:36:50,444 [main] org.springframework.beans.GenericTypeAwarePropertyDescriptor: Invalid JavaBean property 'port' being accessed! Ambiguous write methods found next to actually used [public void org.mule.endpoint.URIBuilder.setPort(java.lang.String)]: [public void org.mule.endpoint.URIBuilder.setPort(int)]
+WARN  2015-05-18 12:36:50,611 [main] org.mule.transport.http.HttpConnector: HTTP transport is deprecated and will be removed in Mule 4.0. Use HTTP module instead.
+INFO  2015-05-18 12:36:50,959 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising connector: connector.http.mule.default
+INFO  2015-05-18 12:36:51,175 [main] org.mule.construct.FlowConstructLifecycleManager: Initialising flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:36:51,176 [main] org.mule.exception.DefaultMessagingExceptionStrategy: Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@3d4b95d1
+INFO  2015-05-18 12:36:51,251 [main] org.mule.processor.SedaStageLifecycleManager: Initialising service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:36:51,320 [main] org.mule.config.spring.SpringXmlConfigurationBuilder: Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:36:51,320 [main] org.mule.config.builders.AutoConfigurationBuilder: Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:36:51,324 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:51,331 [main] org.mule.util.queue.QueueXaResourceManager: Starting ResourceManager
+INFO  2015-05-18 12:36:51,332 [main] org.mule.util.queue.QueueXaResourceManager: Started ResourceManager
+INFO  2015-05-18 12:36:51,391 [main] org.mule.transport.http.HttpConnector: Connected: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=64daa69a
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:36:51,392 [main] org.mule.transport.http.HttpConnector: Starting: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=64daa69a
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:36:51,394 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting connector: connector.http.mule.default
+INFO  2015-05-18 12:36:51,406 [main] org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:36:51,409 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting model: _muleSystemModel
+INFO  2015-05-18 12:36:51,414 [main] org.mule.construct.FlowConstructLifecycleManager: Starting flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:36:51,416 [main] org.mule.processor.SedaStageLifecycleManager: Starting service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:36:51,457 [main] org.mule.transport.http.HttpConnector: Registering listener: mule-spk-2-query-stringFlow on endpointUri: http://localhost:8081
+INFO  2015-05-18 12:36:51,536 [main] org.mule.transport.service.DefaultTransportServiceDescriptor: Loading default response transformer: org.mule.transport.http.transformers.MuleMessageToHttpResponse
+INFO  2015-05-18 12:36:51,632 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:36:51,644 [main] org.mule.transport.http.HttpMessageReceiver: Connecting clusterizable message receiver
+INFO  2015-05-18 12:36:51,659 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:36:51,660 [main] org.mule.transport.http.HttpMessageReceiver: Starting clusterizable message receiver
+INFO  2015-05-18 12:36:51,693 [main] org.mule.module.management.agent.WrapperManagerAgent: This JVM hasn't been launched by the wrapper, the agent will not run.
+INFO  2015-05-18 12:36:51,768 [main] org.mule.module.management.agent.AbstractJmxAgent: Attempting to register service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=connector.http.mule.default,name="endpoint.http.localhost.8081"
+INFO  2015-05-18 12:36:51,770 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Endpoint Service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=connector.http.mule.default,name="endpoint.http.localhost.8081"
+INFO  2015-05-18 12:36:51,775 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Connector Service with name Mule.mule-spk-2-query-string:type=Connector,name="connector.http.mule.default.1"
+INFO  2015-05-18 12:36:51,795 [main] org.mule.DefaultMuleContext: 
+**********************************************************************
+* Application: mule-spk-2-query-string                               *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   Batch module default engine                                      *
+*   Clustering Agent                                                 *
+*   JMX Agent                                                        *
+**********************************************************************
+ERROR 2015-05-18 12:37:26,239 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:41:33,472 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:41:36,665 [[mule-spk-2-query-string].connector.http.mule.default.receiver.03] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+WARN  2015-05-18 12:41:36,674 [[mule-spk-2-query-string].connector.http.mule.default.receiver.03] org.mule.transport.http.HttpMessageProcessTemplate: Exception sending http response after error: Software caused connection abort: socket write error
+ERROR 2015-05-18 12:41:36,677 [[mule-spk-2-query-string].connector.http.mule.default.receiver.03] org.mule.exception.DefaultSystemExceptionStrategy: 
+********************************************************************************
+Message               : Software caused connection abort: socket write error (java.net.SocketException)
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. Software caused connection abort: socket write error (java.net.SocketException)
+  java.net.SocketOutputStream:-2 (null)
+2. Software caused connection abort: socket write error (java.net.SocketException) (org.mule.api.DefaultMuleException)
+  org.mule.transport.http.HttpMessageProcessTemplate:175 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/DefaultMuleException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+java.net.SocketException: Software caused connection abort: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:113)
+	at java.net.SocketOutputStream.write(SocketOutputStream.java:159)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:41:38,727 [[mule-spk-2-query-string].connector.http.mule.default.receiver.04] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:41:38,734 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+ERROR 2015-05-18 12:41:38,786 [[mule-spk-2-query-string].connector.http.mule.default.receiver.02] org.mule.exception.DefaultMessagingExceptionStrategy: 
+********************************************************************************
+Message               : Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String
+Code                  : MULE_ERROR--2
+--------------------------------------------------------------------------------
+Exception stack is:
+1. [Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1] (org.mule.mvel2.PropertyAccessException)
+  org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer:693 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/mvel2/PropertyAccessException.html)
+2. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException)
+  org.mule.el.mvel.MVELExpressionLanguage:202 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/expression/ExpressionRuntimeException.html)
+3. Execution of the expression "nombre" failed. (org.mule.api.expression.ExpressionRuntimeException). Message payload is of type: String (org.mule.api.transformer.TransformerMessagingException)
+  org.mule.transformer.AbstractTransformer:135 (http://www.mulesoft.org/docs/site/current3/apidocs/org/mule/api/transformer/TransformerMessagingException.html)
+--------------------------------------------------------------------------------
+Root Exception stack trace:
+[Error: unresolvable property or identifier: nombre]
+[Near : {... nombre ....}]
+             ^
+[Line: 1, Column: 1]
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.getBeanProperty(ReflectiveAccessorOptimizer.java:693)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.compileGetChain(ReflectiveAccessorOptimizer.java:337)
+	at org.mule.mvel2.optimizers.impl.refl.ReflectiveAccessorOptimizer.optimizeAccessor(ReflectiveAccessorOptimizer.java:140)
+    + 3 more (set debug level logging or '-Dmule.verbose.exceptions=true' for everything)
+********************************************************************************
+
+INFO  2015-05-18 12:42:02,601 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'mule-spk-2-query-string'               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:42:03,141 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising RegistryBroker
+INFO  2015-05-18 12:42:03,723 [main] org.mule.config.spring.MuleArtifactContext: Refreshing org.mule.config.spring.MuleArtifactContext@3f3d8bd0: startup date [Mon May 18 12:42:03 CEST 2015]; root of context hierarchy
+WARN  2015-05-18 12:42:08,784 [main] org.mule.module.ognl.expression.OgnlExpressionEvaluator: OGNL module is deprecated and will be removed in Mule 4.0. Use MEL expressions instead.
+INFO  2015-05-18 12:42:10,816 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx2.log
+INFO  2015-05-18 12:42:10,850 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx2.log
+INFO  2015-05-18 12:42:11,095 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising model: _muleSystemModel
+WARN  2015-05-18 12:42:11,254 [main] org.springframework.beans.GenericTypeAwarePropertyDescriptor: Invalid JavaBean property 'port' being accessed! Ambiguous write methods found next to actually used [public void org.mule.endpoint.URIBuilder.setPort(java.lang.String)]: [public void org.mule.endpoint.URIBuilder.setPort(int)]
+WARN  2015-05-18 12:42:11,451 [main] org.mule.transport.http.HttpConnector: HTTP transport is deprecated and will be removed in Mule 4.0. Use HTTP module instead.
+INFO  2015-05-18 12:42:11,845 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising connector: connector.http.mule.default
+INFO  2015-05-18 12:42:12,167 [main] org.mule.construct.FlowConstructLifecycleManager: Initialising flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:42:12,167 [main] org.mule.exception.DefaultMessagingExceptionStrategy: Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@3a49e192
+INFO  2015-05-18 12:42:12,227 [main] org.mule.processor.SedaStageLifecycleManager: Initialising service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:42:12,286 [main] org.mule.config.spring.SpringXmlConfigurationBuilder: Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:42:12,286 [main] org.mule.config.builders.AutoConfigurationBuilder: Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 12:42:12,289 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:42:12,294 [main] org.mule.util.queue.QueueXaResourceManager: Starting ResourceManager
+INFO  2015-05-18 12:42:12,294 [main] org.mule.util.queue.QueueXaResourceManager: Started ResourceManager
+INFO  2015-05-18 12:42:12,338 [main] org.mule.transport.http.HttpConnector: Connected: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=60025ac0
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:42:12,339 [main] org.mule.transport.http.HttpConnector: Starting: HttpConnector
+{
+  name=connector.http.mule.default
+  lifecycle=initialise
+  this=60025ac0
+  numberOfConcurrentTransactedReceivers=4
+  createMultipleTransactedReceivers=true
+  connected=true
+  supportedProtocols=[http]
+  serviceOverrides=<none>
+}
+
+INFO  2015-05-18 12:42:12,340 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting connector: connector.http.mule.default
+INFO  2015-05-18 12:42:12,347 [main] org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 12:42:12,348 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting model: _muleSystemModel
+INFO  2015-05-18 12:42:12,350 [main] org.mule.construct.FlowConstructLifecycleManager: Starting flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 12:42:12,352 [main] org.mule.processor.SedaStageLifecycleManager: Starting service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 12:42:12,373 [main] org.mule.transport.http.HttpConnector: Registering listener: mule-spk-2-query-stringFlow on endpointUri: http://localhost:8081
+INFO  2015-05-18 12:42:12,404 [main] org.mule.transport.service.DefaultTransportServiceDescriptor: Loading default response transformer: org.mule.transport.http.transformers.MuleMessageToHttpResponse
+INFO  2015-05-18 12:42:12,550 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:42:12,562 [main] org.mule.transport.http.HttpMessageReceiver: Connecting clusterizable message receiver
+INFO  2015-05-18 12:42:12,605 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 12:42:12,606 [main] org.mule.transport.http.HttpMessageReceiver: Starting clusterizable message receiver
+INFO  2015-05-18 12:42:12,645 [main] org.mule.module.management.agent.WrapperManagerAgent: This JVM hasn't been launched by the wrapper, the agent will not run.
+INFO  2015-05-18 12:42:12,717 [main] org.mule.module.management.agent.AbstractJmxAgent: Attempting to register service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=connector.http.mule.default,name="endpoint.http.localhost.8081"
+INFO  2015-05-18 12:42:12,719 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Endpoint Service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=connector.http.mule.default,name="endpoint.http.localhost.8081"
+INFO  2015-05-18 12:42:12,724 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Connector Service with name Mule.mule-spk-2-query-string:type=Connector,name="connector.http.mule.default.1"
+INFO  2015-05-18 12:42:12,739 [main] org.mule.DefaultMuleContext: 
+**********************************************************************
+* Application: mule-spk-2-query-string                               *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   Batch module default engine                                      *
+*   Clustering Agent                                                 *
+*   JMX Agent                                                        *
+**********************************************************************
+INFO  2015-05-18 14:55:25,075 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'mule-spk-2-query-string'               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 14:55:25,091 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising RegistryBroker
+INFO  2015-05-18 14:55:25,091 [main] org.mule.config.spring.MuleArtifactContext: Refreshing org.mule.config.spring.MuleArtifactContext@1118d061: startup date [Mon May 18 14:55:25 CEST 2015]; parent: org.mule.config.spring.MuleDomainContext@58443af6
+INFO  2015-05-18 14:55:26,153 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [spk2.properties]
+INFO  2015-05-18 14:55:26,153 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [global.properties]
+WARN  2015-05-18 14:55:26,153 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Could not load properties from class path resource [global.properties]: class path resource [global.properties] cannot be opened because it does not exist
+INFO  2015-05-18 14:55:26,153 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [spk2.properties]
+INFO  2015-05-18 14:55:26,153 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [global.properties]
+WARN  2015-05-18 14:55:26,169 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Could not load properties from class path resource [global.properties]: class path resource [global.properties] cannot be opened because it does not exist
+INFO  2015-05-18 14:55:26,459 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx2.log
+INFO  2015-05-18 14:55:26,459 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx2.log
+INFO  2015-05-18 14:55:26,506 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising model: _muleSystemModel
+INFO  2015-05-18 14:55:26,803 [main] org.mule.construct.FlowConstructLifecycleManager: Initialising flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 14:55:26,803 [main] org.mule.exception.DefaultMessagingExceptionStrategy: Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@5bf3e277
+INFO  2015-05-18 14:55:26,818 [main] org.mule.processor.SedaStageLifecycleManager: Initialising service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 14:55:26,818 [main] org.mule.config.spring.SpringXmlConfigurationBuilder: Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 14:55:26,818 [main] org.mule.config.builders.AutoConfigurationBuilder: Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 14:55:26,818 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 14:55:26,818 [main] org.mule.util.queue.QueueXaResourceManager: Starting ResourceManager
+INFO  2015-05-18 14:55:26,818 [main] org.mule.util.queue.QueueXaResourceManager: Started ResourceManager
+INFO  2015-05-18 14:55:26,834 [main] org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 14:55:26,834 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting model: _muleSystemModel
+INFO  2015-05-18 14:55:26,834 [main] org.mule.construct.FlowConstructLifecycleManager: Starting flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 14:55:26,834 [main] org.mule.processor.SedaStageLifecycleManager: Starting service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 14:55:26,849 [main] org.mule.transport.http.HttpConnector: Registering listener: mule-spk-2-query-stringFlow on endpointUri: http://localhost:8081/test2
+INFO  2015-05-18 14:55:26,849 [main] org.mule.transport.service.DefaultTransportServiceDescriptor: Loading default response transformer: org.mule.transport.http.transformers.MuleMessageToHttpResponse
+INFO  2015-05-18 14:55:26,849 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 14:55:26,849 [main] org.mule.transport.http.HttpMessageReceiver: Connecting clusterizable message receiver
+ERROR 2015-05-18 14:55:26,849 [main] org.mule.module.launcher.application.DefaultMuleApplication: null
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.DualStackPlainSocketImpl.bind0(Native Method) ~[?:1.7.0_79]
+	at java.net.DualStackPlainSocketImpl.socketBind(DualStackPlainSocketImpl.java:106) ~[?:1.7.0_79]
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:376) ~[?:1.7.0_79]
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:190) ~[?:1.7.0_79]
+	at java.net.ServerSocket.bind(ServerSocket.java:376) ~[?:1.7.0_79]
+	at org.mule.transport.tcp.TcpServerSocketFactory.configure(TcpServerSocketFactory.java:59) ~[mule-transport-tcp-3.6.1.jar:3.6.1]
+	at org.mule.transport.tcp.TcpServerSocketFactory.createServerSocket(TcpServerSocketFactory.java:43) ~[mule-transport-tcp-3.6.1.jar:3.6.1]
+	at org.mule.transport.tcp.TcpServerSocketFactory.createServerSocket(TcpServerSocketFactory.java:37) ~[mule-transport-tcp-3.6.1.jar:3.6.1]
+	at org.mule.transport.tcp.TcpConnector.getServerSocket(TcpConnector.java:488) ~[mule-transport-tcp-3.6.1.jar:3.6.1]
+	at org.mule.transport.http.HttpConnector.getServerSocket(HttpConnector.java:734) ~[mule-transport-http-3.6.1.jar:3.6.1]
+	at org.mule.transport.http.HttpConnectionManager.addConnection(HttpConnectionManager.java:61) ~[mule-transport-http-3.6.1.jar:3.6.1]
+	at org.mule.transport.http.HttpConnector.connect(HttpConnector.java:574) ~[mule-transport-http-3.6.1.jar:3.6.1]
+	at org.mule.transport.http.HttpMessageReceiver.doConnect(HttpMessageReceiver.java:43) ~[mule-transport-http-3.6.1.jar:3.6.1]
+	at org.mule.transport.AbstractMessageReceiver.connectHandler(AbstractMessageReceiver.java:447) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.transport.AbstractTransportMessageHandler.connect(AbstractTransportMessageHandler.java:214) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.transport.AbstractConnector.registerListener(AbstractConnector.java:1252) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.transport.http.HttpConnector.registerListener(HttpConnector.java:363) ~[mule-transport-http-3.6.1.jar:3.6.1]
+	at org.mule.endpoint.DefaultInboundEndpoint.start(DefaultInboundEndpoint.java:104) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct.startIfStartable(AbstractFlowConstruct.java:331) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractPipeline.doStart(AbstractPipeline.java:317) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct$2.onTransition(AbstractFlowConstruct.java:142) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct$2.onTransition(AbstractFlowConstruct.java:138) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.AbstractLifecycleManager.invokePhase(AbstractLifecycleManager.java:138) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.FlowConstructLifecycleManager.fireStartPhase(FlowConstructLifecycleManager.java:92) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct.start(AbstractFlowConstruct.java:137) ~[mule-core-3.6.1.jar:3.6.1]
+	at sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source) ~[?:?]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_79]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[?:1.7.0_79]
+	at org.mule.lifecycle.phases.DefaultLifecyclePhase.applyLifecycle(DefaultLifecyclePhase.java:237) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryLifecycleManager$RegistryLifecycleCallback.onTransition(RegistryLifecycleManager.java:273) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryLifecycleManager.invokePhase(RegistryLifecycleManager.java:152) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryLifecycleManager.fireLifecycle(RegistryLifecycleManager.java:123) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.registry.AbstractRegistryBroker.fireLifecycle(AbstractRegistryBroker.java:76) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.registry.MuleRegistryHelper.fireLifecycle(MuleRegistryHelper.java:136) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager$MuleContextLifecycleCallback.onTransition(MuleContextLifecycleManager.java:91) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager$MuleContextLifecycleCallback.onTransition(MuleContextLifecycleManager.java:87) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager.invokePhase(MuleContextLifecycleManager.java:69) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager.fireLifecycle(MuleContextLifecycleManager.java:61) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.DefaultMuleContext.start(DefaultMuleContext.java:278) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.application.DefaultMuleApplication.start(DefaultMuleApplication.java:133) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.artifact.ArtifactWrapper$4.execute(ArtifactWrapper.java:98) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.artifact.ArtifactWrapper.executeWithinArtifactClassLoader(ArtifactWrapper.java:129) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.artifact.ArtifactWrapper.start(ArtifactWrapper.java:93) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArtifactDeployer.deploy(DefaultArtifactDeployer.java:26) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.guardedDeploy(DefaultArchiveDeployer.java:310) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployArtifact(DefaultArchiveDeployer.java:330) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployPackagedArtifact(DefaultArchiveDeployer.java:155) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployPackagedArtifact(DefaultArchiveDeployer.java:256) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployPackagedArtifact(DefaultArchiveDeployer.java:78) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DeploymentDirectoryWatcher.deployPackedApps(DeploymentDirectoryWatcher.java:275) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DeploymentDirectoryWatcher.start(DeploymentDirectoryWatcher.java:150) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.MuleDeploymentService.start(MuleDeploymentService.java:100) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.MuleContainer.start(MuleContainer.java:152) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.tooling.server.application.ApplicationDeployer.main(ApplicationDeployer.java:15) ~[tooling-support-3.6.1.jar:?]
+INFO  2015-05-18 14:55:26,849 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Disposing app 'mule-spk-2-query-string'                  +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 14:55:26,849 [main] org.mule.lifecycle.AbstractLifecycleManager: Disposing RegistryBroker
+INFO  2015-05-18 14:55:26,865 [main] org.mule.config.spring.MuleArtifactContext: Closing org.mule.config.spring.MuleArtifactContext@1118d061: startup date [Mon May 18 14:55:25 CEST 2015]; parent: org.mule.config.spring.MuleDomainContext@58443af6
+INFO  2015-05-18 14:55:26,865 [main] org.mule.construct.FlowConstructLifecycleManager: Disposing flow: mule-spk-2-query-stringFlow
+ERROR 2015-05-18 14:55:26,865 [main] org.mule.construct.Flow: Failed to stop service: mule-spk-2-query-stringFlow
+org.mule.api.lifecycle.LifecycleException: Lifecycle Manager 'mule-spk-2-query-stringFlow.stage1' phase 'start' does not support phase 'dispose'
+	at org.mule.lifecycle.AbstractLifecycleManager.invokePhase(AbstractLifecycleManager.java:153) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.FlowConstructLifecycleManager.fireDisposePhase(FlowConstructLifecycleManager.java:144) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct.dispose(AbstractFlowConstruct.java:168) ~[mule-core-3.6.1.jar:3.6.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.7.0_79]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[?:1.7.0_79]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.7.0_79]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[?:1.7.0_79]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:328) ~[spring-beans-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:254) ~[spring-beans-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:510) ~[spring-beans-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:486) ~[spring-beans-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:747) ~[spring-beans-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:455) ~[spring-beans-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1090) ~[spring-context-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1064) ~[spring-context-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1010) ~[spring-context-3.2.10.RELEASE.jar:3.2.10.RELEASE]
+	at org.mule.config.spring.SpringRegistry.doDispose(SpringRegistry.java:105) ~[mule-module-spring-config-3.6.1.jar:3.6.1]
+	at org.mule.config.spring.SpringRegistryLifecycleManager$SpringContextDisposePhase.applyLifecycle(SpringRegistryLifecycleManager.java:91) ~[mule-module-spring-config-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryLifecycleManager$RegistryLifecycleCallback.onTransition(RegistryLifecycleManager.java:241) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryLifecycleManager.invokePhase(RegistryLifecycleManager.java:152) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryLifecycleManager.fireLifecycle(RegistryLifecycleManager.java:123) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.registry.AbstractRegistry.dispose(AbstractRegistry.java:69) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.registry.AbstractRegistryBroker$2.onTransition(AbstractRegistryBroker.java:58) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.registry.AbstractRegistryBroker$2.onTransition(AbstractRegistryBroker.java:53) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryLifecycleManager.invokePhase(RegistryLifecycleManager.java:152) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.RegistryBrokerLifecycleManager.fireDisposePhase(RegistryBrokerLifecycleManager.java:78) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.registry.AbstractRegistryBroker.dispose(AbstractRegistryBroker.java:52) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.registry.MuleRegistryHelper.fireLifecycle(MuleRegistryHelper.java:132) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager$MuleContextLifecycleCallback.onTransition(MuleContextLifecycleManager.java:91) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager$MuleContextLifecycleCallback.onTransition(MuleContextLifecycleManager.java:87) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager.invokePhase(MuleContextLifecycleManager.java:69) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.MuleContextLifecycleManager.fireLifecycle(MuleContextLifecycleManager.java:61) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.DefaultMuleContext.dispose(DefaultMuleContext.java:329) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.application.DefaultMuleApplication.doDispose(DefaultMuleApplication.java:404) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.application.DefaultMuleApplication.dispose(DefaultMuleApplication.java:287) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.artifact.ArtifactWrapper$1.execute(ArtifactWrapper.java:39) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.artifact.ArtifactWrapper.executeWithinArtifactClassLoader(ArtifactWrapper.java:129) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.artifact.ArtifactWrapper.dispose(ArtifactWrapper.java:34) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArtifactDeployer.deploy(DefaultArtifactDeployer.java:30) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.guardedDeploy(DefaultArchiveDeployer.java:310) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployArtifact(DefaultArchiveDeployer.java:330) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployPackagedArtifact(DefaultArchiveDeployer.java:155) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployPackagedArtifact(DefaultArchiveDeployer.java:256) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DefaultArchiveDeployer.deployPackagedArtifact(DefaultArchiveDeployer.java:78) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DeploymentDirectoryWatcher.deployPackedApps(DeploymentDirectoryWatcher.java:275) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.DeploymentDirectoryWatcher.start(DeploymentDirectoryWatcher.java:150) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.MuleDeploymentService.start(MuleDeploymentService.java:100) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.module.launcher.MuleContainer.start(MuleContainer.java:152) ~[mule-module-launcher-3.6.1.jar:3.6.1]
+	at org.mule.tooling.server.application.ApplicationDeployer.main(ApplicationDeployer.java:15) ~[tooling-support-3.6.1.jar:?]
+Caused by: java.lang.IllegalStateException: Lifecycle Manager 'mule-spk-2-query-stringFlow.stage1' phase 'start' does not support phase 'dispose'
+	at org.mule.lifecycle.AbstractLifecycleManager.checkPhase(AbstractLifecycleManager.java:118) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.processor.SedaStageLifecycleManager.fireDisposePhase(SedaStageLifecycleManager.java:117) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.processor.SedaStageInterceptingMessageProcessor.dispose(SedaStageInterceptingMessageProcessor.java:429) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.processor.chain.AbstractMessageProcessorChain.dispose(AbstractMessageProcessorChain.java:130) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct.disposeIfDisposable(AbstractFlowConstruct.java:347) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractPipeline.doDispose(AbstractPipeline.java:425) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct$4.onTransition(AbstractFlowConstruct.java:172) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.construct.AbstractFlowConstruct$4.onTransition(AbstractFlowConstruct.java:169) ~[mule-core-3.6.1.jar:3.6.1]
+	at org.mule.lifecycle.AbstractLifecycleManager.invokePhase(AbstractLifecycleManager.java:138) ~[mule-core-3.6.1.jar:3.6.1]
+	... 48 more
+INFO  2015-05-18 14:55:26,865 [main] org.mule.lifecycle.AbstractLifecycleManager: Stopping model: _muleSystemModel
+INFO  2015-05-18 14:55:26,865 [main] org.mule.lifecycle.AbstractLifecycleManager: Disposing model: _muleSystemModel
+INFO  2015-05-18 14:56:15,577 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'mule-spk-2-query-string'               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 14:56:15,608 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising RegistryBroker
+INFO  2015-05-18 14:56:15,624 [main] org.mule.config.spring.MuleArtifactContext: Refreshing org.mule.config.spring.MuleArtifactContext@7ae8844a: startup date [Mon May 18 14:56:15 CEST 2015]; parent: org.mule.config.spring.MuleDomainContext@6edd2f59
+INFO  2015-05-18 14:56:16,546 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [spk2.properties]
+INFO  2015-05-18 14:56:16,546 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [global.properties]
+WARN  2015-05-18 14:56:16,546 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Could not load properties from class path resource [global.properties]: class path resource [global.properties] cannot be opened because it does not exist
+INFO  2015-05-18 14:56:16,546 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [spk2.properties]
+INFO  2015-05-18 14:56:16,546 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [global.properties]
+WARN  2015-05-18 14:56:16,546 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Could not load properties from class path resource [global.properties]: class path resource [global.properties] cannot be opened because it does not exist
+INFO  2015-05-18 14:56:17,054 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx2.log
+INFO  2015-05-18 14:56:17,085 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx2.log
+INFO  2015-05-18 14:56:17,116 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising model: _muleSystemModel
+INFO  2015-05-18 14:56:17,679 [main] org.mule.construct.FlowConstructLifecycleManager: Initialising flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 14:56:17,679 [main] org.mule.exception.DefaultMessagingExceptionStrategy: Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@56e56093
+INFO  2015-05-18 14:56:17,679 [main] org.mule.processor.SedaStageLifecycleManager: Initialising service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 14:56:17,679 [main] org.mule.config.spring.SpringXmlConfigurationBuilder: Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 14:56:17,679 [main] org.mule.config.builders.AutoConfigurationBuilder: Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 14:56:17,679 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 14:56:17,711 [main] org.mule.util.queue.QueueXaResourceManager: Starting ResourceManager
+INFO  2015-05-18 14:56:17,711 [main] org.mule.util.queue.QueueXaResourceManager: Started ResourceManager
+INFO  2015-05-18 14:56:17,726 [main] org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 14:56:17,726 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting model: _muleSystemModel
+INFO  2015-05-18 14:56:17,726 [main] org.mule.construct.FlowConstructLifecycleManager: Starting flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 14:56:17,726 [main] org.mule.processor.SedaStageLifecycleManager: Starting service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 14:56:17,742 [main] org.mule.transport.http.HttpConnector: Registering listener: mule-spk-2-query-stringFlow on endpointUri: http://localhost:8081/test2
+INFO  2015-05-18 14:56:17,742 [main] org.mule.transport.service.DefaultTransportServiceDescriptor: Loading default response transformer: org.mule.transport.http.transformers.MuleMessageToHttpResponse
+INFO  2015-05-18 14:56:17,742 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 14:56:17,742 [main] org.mule.transport.http.HttpMessageReceiver: Connecting clusterizable message receiver
+INFO  2015-05-18 14:56:17,742 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 14:56:17,742 [main] org.mule.transport.http.HttpMessageReceiver: Starting clusterizable message receiver
+INFO  2015-05-18 14:56:17,851 [main] org.mule.module.management.agent.WrapperManagerAgent: This JVM hasn't been launched by the wrapper, the agent will not run.
+INFO  2015-05-18 14:56:17,851 [main] org.mule.module.management.agent.AbstractJmxAgent: Attempting to register service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=HTTP_HTTPS,name="endpoint.http.localhost.8081.test2"
+INFO  2015-05-18 14:56:17,851 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Endpoint Service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=HTTP_HTTPS,name="endpoint.http.localhost.8081.test2"
+INFO  2015-05-18 14:56:17,851 [main] org.mule.DefaultMuleContext: 
+**********************************************************************
+* Application: mule-spk-2-query-string                               *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   Batch module default engine                                      *
+*   Clustering Agent                                                 *
+*   JMX Agent                                                        *
+**********************************************************************
+INFO  2015-05-18 15:35:25,093 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Initializing app 'mule-spk-2-query-string'               +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 15:35:25,108 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising RegistryBroker
+INFO  2015-05-18 15:35:25,139 [main] org.mule.config.spring.MuleArtifactContext: Refreshing org.mule.config.spring.MuleArtifactContext@62293051: startup date [Mon May 18 15:35:25 CEST 2015]; parent: org.mule.config.spring.MuleDomainContext@54889003
+INFO  2015-05-18 15:35:25,780 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [spk2.properties]
+INFO  2015-05-18 15:35:25,780 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [global.properties]
+WARN  2015-05-18 15:35:25,780 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Could not load properties from class path resource [global.properties]: class path resource [global.properties] cannot be opened because it does not exist
+INFO  2015-05-18 15:35:25,780 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [spk2.properties]
+INFO  2015-05-18 15:35:25,780 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Loading properties file from class path resource [global.properties]
+WARN  2015-05-18 15:35:25,780 [main] org.springframework.context.support.PropertySourcesPlaceholderConfigurer: Could not load properties from class path resource [global.properties]: class path resource [global.properties] cannot be opened because it does not exist
+INFO  2015-05-18 15:35:26,281 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-tx-log\tx2.log
+INFO  2015-05-18 15:35:26,453 [main] org.mule.util.journal.TransactionJournal: Using files for tx logs C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx1.log and C:\Users\usuario\mulesoft\workspace\.mule\.\.mule\mule-spk-2-query-string\queue-xa-tx-log\tx2.log
+INFO  2015-05-18 15:35:26,515 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising model: _muleSystemModel
+INFO  2015-05-18 15:35:26,562 [main] org.mule.construct.FlowConstructLifecycleManager: Initialising flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 15:35:26,562 [main] org.mule.exception.DefaultMessagingExceptionStrategy: Initialising exception listener: org.mule.exception.DefaultMessagingExceptionStrategy@6527c8f6
+INFO  2015-05-18 15:35:26,562 [main] org.mule.processor.SedaStageLifecycleManager: Initialising service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 15:35:26,578 [main] org.mule.config.spring.SpringXmlConfigurationBuilder: Configured Mule using "org.mule.config.spring.SpringXmlConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 15:35:26,578 [main] org.mule.config.builders.AutoConfigurationBuilder: Configured Mule using "org.mule.config.builders.AutoConfigurationBuilder" with configuration resource(s): "[ConfigResource{resourceName='C:\Users\usuario\mulesoft\workspace\.mule\apps\mule-spk-2-query-string\mule-spk-2-query-string.xml'}]"
+INFO  2015-05-18 15:35:26,578 [main] org.mule.module.launcher.application.DefaultMuleApplication: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ Starting app 'mule-spk-2-query-string'                   +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 15:35:26,578 [main] org.mule.util.queue.QueueXaResourceManager: Starting ResourceManager
+INFO  2015-05-18 15:35:26,578 [main] org.mule.util.queue.QueueXaResourceManager: Started ResourceManager
+INFO  2015-05-18 15:35:26,594 [main] org.mule.modules.oauth2.provider.agents.DefaultSplashScreenAgent: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ DevKit Extensions (0) used in this application 
+                             +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+INFO  2015-05-18 15:35:26,594 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting model: _muleSystemModel
+INFO  2015-05-18 15:35:26,594 [main] org.mule.construct.FlowConstructLifecycleManager: Starting flow: mule-spk-2-query-stringFlow
+INFO  2015-05-18 15:35:26,594 [main] org.mule.processor.SedaStageLifecycleManager: Starting service: mule-spk-2-query-stringFlow.stage1
+INFO  2015-05-18 15:35:26,594 [main] org.mule.transport.http.HttpConnector: Registering listener: mule-spk-2-query-stringFlow on endpointUri: http://localhost:8081/test2
+INFO  2015-05-18 15:35:26,594 [main] org.mule.transport.service.DefaultTransportServiceDescriptor: Loading default response transformer: org.mule.transport.http.transformers.MuleMessageToHttpResponse
+INFO  2015-05-18 15:35:26,594 [main] org.mule.lifecycle.AbstractLifecycleManager: Initialising: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 15:35:26,594 [main] org.mule.transport.http.HttpMessageReceiver: Connecting clusterizable message receiver
+INFO  2015-05-18 15:35:26,594 [main] org.mule.lifecycle.AbstractLifecycleManager: Starting: 'null'. Object is: HttpMessageReceiver
+INFO  2015-05-18 15:35:26,594 [main] org.mule.transport.http.HttpMessageReceiver: Starting clusterizable message receiver
+INFO  2015-05-18 15:35:26,609 [main] org.mule.module.management.agent.WrapperManagerAgent: This JVM hasn't been launched by the wrapper, the agent will not run.
+INFO  2015-05-18 15:35:26,609 [main] org.mule.module.management.agent.AbstractJmxAgent: Attempting to register service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=HTTP_HTTPS,name="endpoint.http.localhost.8081.test2"
+INFO  2015-05-18 15:35:26,609 [main] org.mule.module.management.agent.AbstractJmxAgent: Registered Endpoint Service with name: Mule.mule-spk-2-query-string:type=Endpoint,service="mule-spk-2-query-stringFlow",connector=HTTP_HTTPS,name="endpoint.http.localhost.8081.test2"
+INFO  2015-05-18 15:35:26,609 [main] org.mule.DefaultMuleContext: 
+**********************************************************************
+* Application: mule-spk-2-query-string                               *
+* OS encoding: \, Mule encoding: UTF-8                               *
+*                                                                    *
+* Agents Running:                                                    *
+*   DevKit Extension Information                                     *
+*   Batch module default engine                                      *
+*   Clustering Agent                                                 *
+*   JMX Agent                                                        *
+**********************************************************************
