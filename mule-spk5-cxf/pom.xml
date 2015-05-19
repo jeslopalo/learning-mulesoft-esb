@@ -3,10 +3,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mycompany</groupId>
-	<artifactId>mule-spk4-maven</artifactId>
+	<artifactId>mule-spk5-cxf</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule</packaging>
-	<name>Mule mule-spk4-maven Application</name>
+	<name>Mule mule-spk5-cxf Application</name>
 
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,7 +64,7 @@
 				</executions>
 			</plugin>
 			<!--Install clover-plugins-->
-<!--             <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.4</version>
@@ -94,8 +94,7 @@
                     </execution>
                 </executions>
             </plugin>
- -->
-             <plugin>
+            <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.7</version>
                 <executions>
@@ -118,13 +117,6 @@
 
 	<!-- Mule Dependencies -->
 	<dependencies>
-	<!-- OJdbc -->
-	<dependency>
-		<groupId>com.oracle</groupId>
-		<artifactId>ojdbc14</artifactId>
-		<version>10.2.0.4.0</version>
-	</dependency>
-	
 		<!-- Xml configuration -->
 		<dependency>
         	<groupId>com.mulesoft.muleesb</groupId>
@@ -190,14 +182,25 @@
 			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
-<!-- 		<dependency>
+		<dependency>
 			<groupId>com.cloveretl</groupId>
 			<artifactId>cloveretl-engine</artifactId>
 			<version>${mule.version}</version>
 			<scope>test</scope>
 		</dependency>
- -->
- 	</dependencies>
+	<dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-cxf</artifactId>
+            <version>${mule.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    <dependency>
+            <groupId>org.mule.modules</groupId>
+            <artifactId>mule-module-spring-config</artifactId>
+            <version>${mule.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 	<repositories>
           <repository>
