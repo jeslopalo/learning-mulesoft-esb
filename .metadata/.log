@@ -2586,3 +2586,9 @@ org.eclipse.core.internal.resources.ResourceException: Resource is out of sync w
 
 !ENTRY org.mule.tooling.maven 2 0 2015-05-19 10:55:34.298
 !MESSAGE Skipping installation of jar file: C:\Users\usuario\mulesoft\bin\AnypointStudio\plugins\org.mule.tooling.server.3.6.1.ee_5.0.2.201502251902\mule\lib\opt\kryo-shaded-3.0.0.jar because it seems to have an incorrect pom file embedded (com.esotericsoftware:kryo-parent:3.0.0)
+
+!ENTRY org.mule.tooling.maven 4 0 2015-05-19 10:56:47.496
+!MESSAGE There was an error populating the local repository with ESB artifacts
+
+!ENTRY org.mule.tooling.maven 4 0 2015-05-19 10:56:47.496
+!MESSAGE There was an error populating the local repository with ESB artifacts
