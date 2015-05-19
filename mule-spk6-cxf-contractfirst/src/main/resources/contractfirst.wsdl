@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://cxf.mulesoft.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="Service" targetNamespace="http://cxf.mulesoft.com/">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cxf.mulesoft.com" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cxf.mulesoft.com">
+<xsd:complexType name="ReturnType">
+<xsd:sequence/>
+</xsd:complexType>
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cxf.mulesoft.com/" xmlns:ns0="http://cxf.mulesoft.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://cxf.mulesoft.com/">
+<xsd:import namespace="http://cxf.mulesoft.com"/>
+<xsd:element name="firstMethod" type="tns:firstMethod"/>
+<xsd:complexType name="firstMethod">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="aNumber" nillable="true" type="xsd:int"/>
+<xsd:element minOccurs="0" name="aString" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="firstMethodResponse" type="tns:firstMethodResponse"/>
+<xsd:complexType name="firstMethodResponse">
+<xsd:sequence>
+<xsd:element minOccurs="0" name="return" type="ns0:ReturnType"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="firstMethodResponse">
+    <wsdl:part element="tns:firstMethodResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="firstMethod">
+    <wsdl:part element="tns:firstMethod" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServicePortType">
+    <wsdl:operation name="firstMethod">
+      <wsdl:input message="tns:firstMethod" name="firstMethod">
+    </wsdl:input>
+      <wsdl:output message="tns:firstMethodResponse" name="firstMethodResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoapBinding" type="tns:ServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="firstMethod">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="firstMethod">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="firstMethodResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port binding="tns:ServiceSoapBinding" name="ServicePort">
+      <soap:address location="http://localhost:8081/testcxf2"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

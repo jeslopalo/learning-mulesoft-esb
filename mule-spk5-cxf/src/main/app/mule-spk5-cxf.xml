@@ -8,12 +8,19 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd">
     <flow name="mule-spk5-cxfFlow">
-        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="testcxf" doc:name="HTTP"/>
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="testcxf1" doc:name="HTTP"/>
         <cxf:simple-service serviceClass="com.mulesoft.cxf.Service" doc:name="CXF">
             <cxf:aegis-databinding/>
         </cxf:simple-service>
         <component doc:name="Java">
             <singleton-object class="com.mulesoft.cxf.ServiceImpl"/>
+        </component>
+    </flow>
+    <flow name="mule-spk5-cxfFlow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="testcxf2" doc:name="HTTP"/>
+        <cxf:simple-service serviceClass="com.mulesoft.cxf.Service" doc:name="CXF"/>
+        <component doc:name="Java">
+            <singleton-object class="com.mulesoft.cxf.ServiceCallable"/>
         </component>
     </flow>
 </mule>
