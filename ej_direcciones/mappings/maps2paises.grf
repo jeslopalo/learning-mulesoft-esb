@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="José" created="Tue May 19 21:40:22 CEST 2015" description="Map To Pojo" guiVersion="3.4.4.P" id="1432071983751" licenseCode="Unlicensed" licenseType="Unknown" modified="Tue May 19 21:40:22 CEST 2015" modifiedBy="José" name="Map_To_Pojo" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/list" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _type="Output" id="d1a22c77-7a6a-4346-af9f-eca1c006f3bf">
+<Record fieldDelimiter="," name="list" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/list/cod" containerType="SINGLE" label="cod" name="cod" type="string"/>
+<Field __index="1" __sourcePath="{}/list/id" containerType="SINGLE" label="id" name="id" type="integer"/>
+<Field __index="2" __sourcePath="{}/list/nombre" containerType="SINGLE" label="nombre" name="nombre" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/PAISES" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _type="Input" id="4416c805-f99b-486e-8e0a-5eff97cf0cda">
+<Record fieldDelimiter="," name="PAISES" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="1" __sourcePath="{}/PAISES/COD_x005fISO" containerType="SINGLE" label="COD_ISO" name="COD_ISO" type="string"/>
+<Field __index="0" __sourcePath="{}/PAISES/ID_x005fISO" containerType="SINGLE" label="ID_ISO" name="ID_ISO" type="integer"/>
+<Field __index="2" __sourcePath="{}/PAISES/NOMBRE" containerType="SINGLE" label="NOMBRE" name="NOMBRE" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiName="Map&lt;k,v&gt; READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="COD_ISO" trim="true" xpath="COD_x005fISO"/>
+  <Mapping cloverField="ID_ISO" trim="true" xpath="ID_x005fISO"/>
+  <Mapping cloverField="NOMBRE" trim="true" xpath="NOMBRE"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[MAP]]></attr>
+</Node>
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Pojo WRITER" guiX="900" guiY="20" id="BEAN_WRITER0" type="BEAN_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:collection clover:name="list" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping">
+  <item clover:inPort="0">
+    <cod>$0.cod</cod>
+    <id>$0.id</id>
+    <nombre>$0.nombre</nombre>
+  </item>
+</clover:collection>]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <schema-collection>
+    <typed-object-ref type-ref="formacion.mule.on.Pais"/>
+  </schema-collection>
+  <typed-object type="formacion.mule.on.Pais">
+    <typed-object-ref name="cod" type-ref="java.lang.String"/>
+    <typed-object-ref name="id" type-ref="int"/>
+    <typed-object-ref name="nombre" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="int"/>
+  <typed-object type="java.lang.String"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'PAISES' -&gt; 'list'" guiX="460" guiY="20" id="FOREACH_PAISES_LIST" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.nombre = input.NOMBRE;
+output.cod = input.COD_ISO;
+output.id = input.ID_ISO;]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="4416c805-f99b-486e-8e0a-5eff97cf0cda" outPort="Port 0 (out)" toNode="FOREACH_PAISES_LIST:0"/>
+<Edge debugMode="true" fromNode="FOREACH_PAISES_LIST:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="d1a22c77-7a6a-4346-af9f-eca1c006f3bf" outPort="Port 0 (out)" toNode="BEAN_WRITER0:0"/>
+</Phase>
+</Graph>

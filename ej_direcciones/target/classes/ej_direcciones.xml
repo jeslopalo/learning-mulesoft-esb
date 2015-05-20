@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+
+    <context:property-placeholder location="ej_direcciones.properties"/>
+
+	<spring:beans>
+		<spring:bean id="connect"
+			class="org.enhydra.jdbc.standard.StandardConnectionPoolDataSource">
+			<spring:property name="driverName"
+				value="${db.arceweb.jdbc.driverName}" />
+			<spring:property name="url"
+				value="${db.arceweb.jdbc.url}" />
+			<spring:property name="preparedStmtCacheSize"
+				value="${db.pool.preparedStmtCacheSize:0}" />
+		</spring:bean>
+		<spring:bean id="dataSource"
+			class="org.enhydra.jdbc.pool.StandardPoolDataSource" destroy-method="shutdown"
+			depends-on="connect">
+			<spring:constructor-arg ref="connect" index="0" />
+			<spring:property name="user" value="${db.arceweb.user}" />
+			<spring:property name="password" value="${db.arceweb.password}" />
+			<spring:property name="minSize" value="${db.pool.mixSize:0}" />
+			<spring:property name="maxSize" value="${db.pool.maxSize:5}" />
+			<spring:property name="lifeTime"
+				value="${db.pool.lifeTime:60000}" />
+			<spring:property name="sleepTime"
+				value="${db.pool.sleepTime:10000}" />
+			<spring:property name="jdbcTestStmt"
+				value="${db.pool.jdbcTestStmt:select 1 from dual}" />
+			<spring:property name="generation" value="${db.pool.generation:1}" />
+			<spring:property name="deadLockMaxWait"
+				value="${db.pool.deadLockMaxWait:10000}" />
+			<spring:property name="deadLockRetryWait"
+				value="${db.pool.deadLockRetryWait:10000}" />
+			<spring:property name="checkLevelObject"
+				value="${db.pool.checkLevelObject:2}" />
+		</spring:bean>
+        <spring:bean id="mapToBean" name="mapToBean" class="formacion.mule.utils.parsemaps.MapToBean"/>
+	</spring:beans>
+    <db:generic-config name="Generic_Database_Configuration" dataSource-ref="dataSource" doc:name="Generic Database Configuration"/>
+    <http:connector name="HTTP_HTTPS" cookieSpec="netscape" validateConnections="true" sendBufferSize="0" receiveBufferSize="0" receiveBacklog="0" clientSoTimeout="10000" serverSoTimeout="10000" socketSoLinger="0" doc:name="HTTP-HTTPS"/>
+    <data-mapper:config name="Map2Pais" transformationGraphPath="map2pais.grf" doc:name="Map2Pais"/>
+    <data-mapper:config name="Maps2Paises" transformationGraphPath="maps2paises.grf" doc:name="Map_To_Pojo"/>
+    <ee:object-store-caching-strategy name="Paises_Caching_Strategy" keyGenerationExpression="#[flowVars.numPagina + '-' + flowVars.tamPagina]" doc:name="Caching Strategy"/>
+    
+    
+    <flow name="ej_direccionesFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="${direcciones.service.host:0.0.0.0}" port="${direcciones.service.port:8081}" path="${direcciones.service.path:direcciones}" connector-ref="HTTP_HTTPS" doc:name="http-in: servicio direcciones"/>
+        <cxf:jaxws-service serviceClass="formacion.mule.servicios.Direcciones" doc:name="CXF">
+            <cxf:jaxb-databinding/>
+        </cxf:jaxws-service>
+        <scripting:component doc:name="groovy: argumentos entrada">
+            <scripting:script engine="Groovy"><![CDATA[flowVars.numPagina = payload==null?0:payload.numPagina;
+flowVars.tamPagina = payload==null?${consulta.resultados.maximo}:payload.tamPagina;
+
+if (flowVars.tamPagina>50) {
+	throw new formacion.mule.servicios.ServiceFault("Tamaño de página máximo: 50");
+}]]></scripting:script>
+        </scripting:component>
+        <ee:cache doc:name="cach&#233; respuesta" cachingStrategy-ref="Paises_Caching_Strategy">
+	        <db:select config-ref="Generic_Database_Configuration" target="#[flowVars.total]" doc:name="db-sel: total">
+	            <db:parameterized-query><![CDATA[select count(*) TOTAL from PAIS]]></db:parameterized-query>
+	        </db:select>
+	        
+	        <enricher target="#[flowVars.paises]" doc:name="Message Enricher">
+	        	<processor-chain doc:name="Processor Chain">
+	                <db:select config-ref="Generic_Database_Configuration" doc:name="db-sel: p&#225;gina">
+	                    <db:parameterized-query><![CDATA[select COD_ISO,NOMBRE,ID_ISO from ( select  q.*, ROWNUM ROWNUM_ from (
+SELECT COD_ISO,NOMBRE,ID_ISO
+FROM PAIS
+	ORDER BY NOMBRE ASC
+) q where
+	ROWNUM <= #[(numPagina+1) * tamPagina]
+) where 
+	ROWNUM_ > #[ numPagina * tamPagina ]]]></db:parameterized-query>
+	                </db:select>
+			        <choice doc:name="Choice">
+			            <when expression="#[false]">
+			                <collection-splitter doc:name="Collection Splitter"/>
+			                <data-mapper:transform config-ref="Map2Pais" doc:name="Map2Pais"/>
+			                <collection-aggregator failOnTimeout="true" doc:name="Collection Aggregator"/>
+			            </when>
+	                    <when expression="#[false]">
+	                        <data-mapper:transform config-ref="Maps2Paises" doc:name="Maps2Paises"/>
+	                    </when>
+			            <otherwise>
+                            <set-payload value="#[new formacion.mule.utils.parsemaps.MapToBean().mapListToBeanList(formacion.mule.on.Pais,payload)]" doc:name="payload: mapToBean"/>
+	                        <!-- <invoke object-ref="mapToBean" method="mapListToBeanList" methodArguments="#[formacion.mule.on.Pais],#[payload]"  doc:name="invoke: mapToBean"/> -->
+	                        <!-- <set-payload value="#[{formacion.mule.on.Pais,payload}]" doc:name="payload: preparar map2bean"/> 
+	                        <component doc:name="Java">
+	                            <singleton-object class="formacion.mule.utils.parsemaps.MapToBean"/>
+	                        </component> -->
+			            </otherwise>
+			        </choice>
+		        </processor-chain>  
+	        </enricher>
+	        <set-payload value="#[new formacion.mule.on.RespuestaPaises()]" doc:name="payload: RespuestaPaises"/>
+	        <expression-component doc:name="expr: pagina salida"><![CDATA[payload.numPagina=numPagina;
+payload.tamPagina=tamPagina;
+payload.total=total.get(0).get("TOTAL");
+payload.paises=paises;]]></expression-component>
+		</ee:cache>
+    </flow>
+
+
+</mule>

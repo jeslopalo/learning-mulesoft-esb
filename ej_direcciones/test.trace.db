@@ -1,0 +1,32 @@
+05-19 22:57:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from PAIS [42102-176]
+05-19 22:59:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from "PAIS" [42102-176]
+05-19 23:00:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from PAIS [42102-176]
+05-19 23:03:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from PAIS [42102-176]
+05-19 23:06:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from PAIS [42102-176]
+05-19 23:07:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from PAIS [42102-176]
+05-19 23:08:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from PAIS [42102-176]
+05-19 23:09:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Tabla "PAIS" no encontrada
+Table "PAIS" not found; SQL statement:
+select count(*) TOTAL from PAIS [42102-176]

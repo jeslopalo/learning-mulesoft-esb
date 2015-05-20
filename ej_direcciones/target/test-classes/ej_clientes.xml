@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    <flow name="clientePaisFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="${direcciones.service.host:0.0.0.0}" port="${direcciones.service.port:8081}" path="cliente/pais" connector-ref="HTTP_HTTPS" doc:name="http-in: cliente pais" mimeType="application/json"/>
+        <expression-component doc:name="expr: pagina"><![CDATA[payload = new formacion.mule.on.Pagina();
+flowVars.numPagina = message.inboundProperties.'http.query.params'.numPagina;
+flowVars.tamPagina = message.inboundProperties.'http.query.params'.tamPagina;
+payload.numPagina= flowVars.numPagina==null?0:flowVars.numPagina;
+payload.tamPagina= flowVars.tamPagina==null?50:flowVars.tamPagina;]]></expression-component>
+        <processor-chain doc:name="Processor Chain">
+            <cxf:jaxws-client operation="PAISES" serviceClass="formacion.mule.servicios.Direcciones" doc:name="CXF"/>
+            <http:outbound-endpoint exchange-pattern="request-response" host="127.0.0.1" port="${direcciones.service.port:8081}" path="${direcciones.service.path:direcciones}" connector-ref="HTTP_HTTPS" doc:name="http-out: servicio direcciones"/>
+        </processor-chain>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+    </flow>
+</mule>
