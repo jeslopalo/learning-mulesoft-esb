@@ -1,0 +1,43 @@
+#%RAML 0.8
+---
+title: Sample API
+version: 0.1
+baseUri: http://server/direcciones/{version}
+
+traits: 
+  - paginado:
+      description: Paginacion de resultados
+      queryParameters: 
+        numPagina:
+          type: Integer
+          minimum: 0
+          required: false
+          example: 0
+        tamPagina:
+          type: Integer
+          minimum: 1
+          maximum: 50
+          required: false
+          example: 10
+  - respuestaError:
+      responses:
+        500:
+          description: Se ha producido un error de servidor
+          body:
+            application/json:
+              example:  |
+                { "faultcode" : "ES23k234k23", "faultdescription" : "Error en el servidor" }
+/paises: 
+  get:
+    description: Obtener una lista de paises
+    is: [paginado, respuestaError]
+    responses: 
+      200:
+        description: El servicio se ha ejecutado correctamente. La respuesta contiene una lista de paises.
+        body:
+          application/json:
+            example:  |
+              {"numPagina": 0, "tamPagina": 1, "total": 249, "paises": [{ "ID_ISO": 2, "COD_ISO": "447", "NOMBRE" : "Afganistan"}] }
+              
+      
+        

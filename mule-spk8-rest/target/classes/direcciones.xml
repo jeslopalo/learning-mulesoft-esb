@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd" version="EE-3.6.1">
+    <db:oracle-config name="Oracle_Configuration" host="10.255.255.76" port="1521" instance="rcedesa" user="ARCEWEB" password="5ede.arc3" doc:name="Oracle Configuration"/>
+    <ee:object-store-caching-strategy name="Caching_Strategy" keyGenerationExpression="#[page.page + '%' + page.size]" doc:name="Caching Strategy"/>
+
+    <http:listener-config name="direcciones-httpListenerConfig" host="localhost" port="8081" doc:name="HTTP Listener Configuration"/>
+    <apikit:config name="direcciones-config" raml="direcciones.raml" consoleEnabled="true" consolePath="console" doc:name="Router"/>
+    <apikit:mapping-exception-strategy name="direcciones-apiKitGlobalExceptionMapping">
+        <apikit:mapping statusCode="404">
+            <apikit:exception value="org.mule.module.apikit.exception.NotFoundException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Resource not found&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="405">
+            <apikit:exception value="org.mule.module.apikit.exception.MethodNotAllowedException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Method not allowed&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="415">
+            <apikit:exception value="org.mule.module.apikit.exception.UnsupportedMediaTypeException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Unsupported media type&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="406">
+            <apikit:exception value="org.mule.module.apikit.exception.NotAcceptableException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Not acceptable&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+        <apikit:mapping statusCode="400">
+            <apikit:exception value="org.mule.module.apikit.exception.BadRequestException" />
+            <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
+            <set-payload value="{ &quot;message&quot;: &quot;Bad request&quot; }" doc:name="Set Payload"/>
+        </apikit:mapping>
+    </apikit:mapping-exception-strategy>
+    <flow name="direcciones-main">
+        <http:listener config-ref="direcciones-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
+        <apikit:router config-ref="direcciones-config" doc:name="APIkit Router"/>
+        <exception-strategy ref="direcciones-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
+    </flow>
+    <flow name="get:/paises:direcciones-config">
+        <expression-component doc:name="Expression"><![CDATA[payload= new es.corpme.mule.db.Page();
+
+payload.page=message.inboundProperties.get("http.query.params").get("numPagina");
+payload.size=message.inboundProperties.get("http.query.params").get("tamPagina");
+
+payload.page=payload.page == null? 0 : payload.page;
+payload.size= payload.size == null? 10 : payload.size;]]></expression-component>
+        <set-variable variableName="page" value="#[payload]" doc:name="Variable"/>
+        <logger message="page: #[page.page] size: #[page.size] " level="INFO" doc:name="Logger"/>
+        <ee:cache cachingStrategy-ref="Caching_Strategy" doc:name="Cache">
+            <db:select config-ref="Oracle_Configuration" doc:name="Database">
+                <db:parameterized-query><![CDATA[select COD_ISO,NOMBRE,ID_ISO 
+from ( 
+	select q.*, rownum ROWNUM_ 
+	from (
+		select COD_ISO,NOMBRE,ID_ISO 
+		from pais 
+		order by nombre asc) q 
+	where rownum <= #[(page.page + 1) * page.size] )
+where ROWNUM_ > #[page.page * page.size]]]></db:parameterized-query>
+            </db:select>
+            <set-payload value="#[new es.corpme.mule.db.DbPaisesMapper().map(page, payload)]" doc:name="Set Payload"/>
+            <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+            <json:object-to-json-transformer doc:name="Object to JSON"/>
+        </ee:cache>
+    </flow>
+</mule>

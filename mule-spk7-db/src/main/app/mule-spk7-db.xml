@@ -16,6 +16,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="testdb" doc:name="HTTP"/>
         <db:select config-ref="Oracle_Configuration" doc:name="Database">
             <db:parameterized-query><![CDATA[select * from pais]]></db:parameterized-query>
+
         </db:select>
         <logger message="hola" level="INFO" doc:name="Logger"/>
         <json:object-to-json-transformer doc:name="Object to JSON"/>
@@ -37,6 +38,7 @@ from (
 		order by nombre asc) q 
 	where rownum <= #[(page.page + 1) * page.size] )
 where ROWNUM_ > #[page.page * page.size]]]></db:parameterized-query>
+
             </db:select>
             <set-payload value="#[new es.corpme.mule.db.DbPaisesMapper().map(page, payload)]" doc:name="Set Payload"/>
             <logger message="#[payload]" level="INFO" doc:name="Logger"/>
