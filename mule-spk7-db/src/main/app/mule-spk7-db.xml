@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
@@ -8,8 +8,10 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
-http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd">
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
     <db:oracle-config name="Oracle_Configuration" host="10.255.255.76" port="1521" instance="rcedesa" user="ARCEWEB" password="5ede.arc3" doc:name="Oracle Configuration"/>
+    <ee:object-store-caching-strategy name="Caching_Strategy" keyGenerationExpression="#[page.page + '%' + page.size]" doc:name="Caching Strategy"/>
     <flow name="mule-spk7-dbFlow">
         <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="testdb" doc:name="HTTP"/>
         <db:select config-ref="Oracle_Configuration" doc:name="Database">
@@ -24,8 +26,9 @@ http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/
         <cxf:simple-service serviceClass="es.corpme.mule.db.PaisService" doc:name="CXF"/>
         <set-variable variableName="page" value="#[payload]" doc:name="Variable"/>
         <logger message="page: #[page.page] size: #[page.size] " level="INFO" doc:name="Logger"/>
-        <db:select config-ref="Oracle_Configuration" doc:name="Database">
-            <db:parameterized-query><![CDATA[select COD_ISO,NOMBRE,ID_ISO 
+        <ee:cache cachingStrategy-ref="Caching_Strategy" doc:name="Cache">
+            <db:select config-ref="Oracle_Configuration" doc:name="Database">
+                <db:parameterized-query><![CDATA[select COD_ISO,NOMBRE,ID_ISO 
 from ( 
 	select q.*, rownum ROWNUM_ 
 	from (
@@ -34,8 +37,21 @@ from (
 		order by nombre asc) q 
 	where rownum <= #[(page.page + 1) * page.size] )
 where ROWNUM_ > #[page.page * page.size]]]></db:parameterized-query>
-        </db:select>
-        <set-payload value="#[new es.corpme.mule.db.DbPaisesMapper().map(page, payload)]" doc:name="Set Payload"/>
-        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+            </db:select>
+            <set-payload value="#[new es.corpme.mule.db.DbPaisesMapper().map(page, payload)]" doc:name="Set Payload"/>
+            <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        </ee:cache>
+    </flow>
+    <flow name="mule-spk7-dbFlow2">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="testclient" doc:name="HTTP"/>
+        <expression-component doc:name="Expression"><![CDATA[payload= new es.corpme.mule.db.Page();
+
+payload.page=1;
+payload.size=2;]]></expression-component>
+        <processor-chain doc:name="Processor Chain">
+            <cxf:simple-client operation="paises" doc:name="CXF" serviceClass="es.corpme.mule.db.PaisService"/>
+            <http:outbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="testdb-paises" method="POST" doc:name="HTTP"/>
+        </processor-chain>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
     </flow>
 </mule>

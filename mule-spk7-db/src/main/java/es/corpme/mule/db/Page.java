@@ -26,4 +26,11 @@ public class Page {
 	public void setSize(int size) {
 		this.size = Math.max(0, Math.min(size, MAX_PAGE_SIZE));
 	}
+
+	@Override
+	public String toString() {
+		return "Page [page=" + page + ", size=" + size + "]";
+	}
+	
+	
 }

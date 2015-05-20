@@ -24,5 +24,12 @@ public class Pais {
 	}
 	public void setIsoCode(String isoCode) {
 		this.isoCode = isoCode;
+	}
+	@Override
+	public String toString() {
+		return "Pais [id=" + id + ", name=" + name + ", isoCode=" + isoCode
+				+ "]";
 	}	
+	
+	
 }

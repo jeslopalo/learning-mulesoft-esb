@@ -9,12 +9,16 @@ public class Result<T> {
 	private Page page;
 	private List<T> results;
 	
-	Result(final Page page, Collection<T> results) {
+	public Result() {
+		
+	}
+	
+	public Result(final Page page, Collection<T> results) {
 		this.page= page;
 		this.results= new ArrayList<>(results);
 	}
 
-	Result(final Page page) {
+	public Result(final Page page) {
 		this.page= page;
 		this.results= new ArrayList<>();
 	}
@@ -33,5 +37,12 @@ public class Result<T> {
 
 	public void setResults(List<T> results) {
 		this.results = results;
+	}
+
+	@Override
+	public String toString() {
+		return "Result [page=" + page + ", results=" + results + "]";
 	}	
+	
+	
 }
