@@ -1,0 +1,1 @@
+Example: http://www.mulesoft.org/documentation/display/current/Proxying+a+REST+API

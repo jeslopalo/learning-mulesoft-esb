@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:test-formacion:Direcciones" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="DireccionesService" targetNamespace="urn:test-formacion:Direcciones">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:test-formacion:Direcciones" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:test-formacion:Direcciones">
+<xs:element name="PAISES" type="tns:PAISES"/>
+<xs:element name="PAISESResponse" type="tns:PAISESResponse"/>
+<xs:complexType name="PAISES">
+<xs:sequence>
+<xs:element form="qualified" minOccurs="0" name="Pagina" type="tns:Pagina"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Pagina">
+<xs:sequence/>
+<xs:attribute name="numPagina" type="xs:int" use="required"/>
+<xs:attribute name="tamPagina" type="xs:int" use="required"/>
+</xs:complexType>
+<xs:complexType name="PAISESResponse">
+<xs:sequence>
+<xs:element form="qualified" minOccurs="0" name="Respuesta" type="tns:RespuestaPaises"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RespuestaPaises">
+<xs:complexContent>
+<xs:extension base="tns:RespuestaPaginada">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" name="pais" type="tns:Pais"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="RespuestaPaginada">
+<xs:sequence/>
+<xs:attribute name="numPagina" type="xs:int" use="required"/>
+<xs:attribute name="tamPagina" type="xs:int" use="required"/>
+<xs:attribute name="total" type="xs:int" use="required"/>
+</xs:complexType>
+<xs:complexType name="Pais">
+<xs:sequence/>
+<xs:attribute name="id" type="xs:decimal" use="required"/>
+<xs:attribute name="cod" type="xs:string" use="required"/>
+<xs:attribute name="nombre" type="xs:string" use="required"/>
+</xs:complexType>
+<xs:element name="ServiceFault" type="tns:ServiceFault"/>
+<xs:complexType name="ServiceFault">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ServiceFault">
+    <wsdl:part element="tns:ServiceFault" name="ServiceFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PAISESResponse">
+    <wsdl:part element="tns:PAISESResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="PAISES">
+    <wsdl:part element="tns:PAISES" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DireccionesPort">
+    <wsdl:operation name="PAISES">
+      <wsdl:input message="tns:PAISES" name="PAISES">
+    </wsdl:input>
+      <wsdl:output message="tns:PAISESResponse" name="PAISESResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ServiceFault" name="ServiceFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DireccionesServiceSoapBinding" type="tns:DireccionesPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="PAISES">
+      <soap:operation soapAction="PAISES" style="document"/>
+      <wsdl:input name="PAISES">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PAISESResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ServiceFault">
+        <soap:fault name="ServiceFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DireccionesService">
+    <wsdl:port binding="tns:DireccionesServiceSoapBinding" name="DireccionesPortPort">
+      <soap:address location="http://10.134.134.40:8081/direcciones"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
