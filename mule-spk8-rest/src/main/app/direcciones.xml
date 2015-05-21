@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <db:oracle-config name="Oracle_Configuration" host="10.255.255.76" port="1521" instance="rcedesa" user="ARCEWEB" password="5ede.arc3" doc:name="Oracle Configuration"/>
     <ee:object-store-caching-strategy name="Caching_Strategy" keyGenerationExpression="#[page.page + '%' + page.size]" doc:name="Caching Strategy"/>
 
-    <http:listener-config name="direcciones-httpListenerConfig" host="localhost" port="8081" doc:name="HTTP Listener Configuration"/>
+    <http:listener-config name="direcciones-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
     <apikit:config name="direcciones-config" raml="direcciones.raml" consoleEnabled="true" consolePath="console" doc:name="Router"/>
     <apikit:mapping-exception-strategy name="direcciones-apiKitGlobalExceptionMapping">
         <apikit:mapping statusCode="404">
