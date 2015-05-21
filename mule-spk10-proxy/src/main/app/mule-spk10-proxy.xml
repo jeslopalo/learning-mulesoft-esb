@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+<mule xmlns:hello-world="http://www.mulesoft.org/schema/mule/hello-world" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd">
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/hello-world http://www.mulesoft.org/schema/mule/hello-world/current/mule-hello-world.xsd">
 	
 	<flow name="RESTproxy_template_Flow1" >
 		<http:inbound-endpoint address="http://localhost:8082"
 			exchange-pattern="request-response" doc:name="HTTP" />
 		<set-property propertyName="http.disable.status.code.exception.check"
 			value="true" doc:name="Disable Exception Check" />
-		<flow-ref name="copy-headers" doc:name="Copy HTTP Headers" />
+		<flow-ref name="copy-headers" doc:name="copy-headers" />
 		<http:outbound-endpoint exchange-pattern="request-response"
 			address="http://localhost:8081#[message.inboundProperties['http.request']]"
 			doc:name="Send Requests to API" method="GET"/>
-		<flow-ref name="copy-headers" doc:name="Copy HTTP Headers" />
+		<flow-ref name="copy-headers" doc:name="copy-headers" />
 	</flow>
 	<sub-flow name="copy-headers" >
 		<copy-properties propertyName="*" doc:name="Copy All HTTP Headers" />
