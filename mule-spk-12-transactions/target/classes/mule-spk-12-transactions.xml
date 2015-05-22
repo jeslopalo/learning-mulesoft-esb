@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:jbossts="http://www.mulesoft.org/schema/mule/jbossts" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/jbossts http://www.mulesoft.org/schema/mule/jbossts/current/mule-jbossts.xsd">
+    <db:oracle-config name="Oracle_Configuration" host="10.255.255.76" port="1521" instance="rcedesa" user="ARCEWEB" password="5ede.arc3" useXaTransactions="true" doc:name="Oracle Configuration"/>
+    <db:generic-config name="Generic_Database_Configuration" url="jdbc:h2:tcp://10.134.134.40/formacion7;MODE=Oracle;IFEXISTS=TRUE;USER=sa" driverClassName="org.h2.Driver" useXaTransactions="true" doc:name="Generic Database Configuration"/>
+    <jbossts:transaction-manager doc:name="JBoss Transaction Manager"/>
+    <flow name="mule-spk-12-transactionsFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="transaction" doc:name="HTTP"/>
+        <set-variable variableName="id" value="#[message.inboundProperties.get(&quot;http.query.params&quot;).get(&quot;id&quot;)]" doc:name="Variable"/>
+        <logger message="Insertando #[id]" level="INFO" doc:name="Logger"/>
+        <ee:xa-transactional action="ALWAYS_BEGIN" doc:name="Transactional">
+            <db:insert config-ref="Oracle_Configuration" doc:name="Oracle">
+                <db:parameterized-query><![CDATA[insert into USUARIOS_142 (ID,SEXO,NOMBRE,APELLIDO1,APELLIDO2,FN) 
+values (#[id],'V','Jesús','López','Alonso',null)]]></db:parameterized-query>
+            </db:insert>
+            <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+            <db:insert config-ref="Generic_Database_Configuration" doc:name="H2">
+                <db:parameterized-query><![CDATA[insert into USUARIOS (ID,SEXO,NOMBRE,APELLIDO1,APELLIDO2,FN) 
+values (#[id],'V','Jesús','López','Alonso',null)]]></db:parameterized-query>
+            </db:insert>
+            <rollback-exception-strategy doc:name="Rollback Exception Strategy">
+                <logger message="\n\n\n Este es el error: #[payload]" level="INFO" doc:name="Logger"/>
+            </rollback-exception-strategy>
+        </ee:xa-transactional>
+        <catch-exception-strategy doc:name="Catch Exception Strategy">
+            <logger message="\n\n\n Este es el error: #[payload]" level="INFO" doc:name="Logger"/>
+        </catch-exception-strategy>
+    </flow>
+</mule>
