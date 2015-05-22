@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="José" created="Thu May 21 23:30:35 CEST 2015" description="usuario2csv" guiVersion="3.4.4.P" id="1432246669028" licenseCode="Unlicensed" licenseType="Unknown" modified="Thu May 21 23:30:35 CEST 2015" modifiedBy="José" name="usuario2csv" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="f0e932cc-c6fc-45ee-85c1-c2c07b5f93b5">
+<Record fieldDelimiter="," name="Usuario" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/apellido1" containerType="SINGLE" label="apellido1" name="apellido1" type="string"/>
+<Field __index="1" __sourcePath="{}/object/apellido2" containerType="SINGLE" label="apellido2" name="apellido2" type="string"/>
+<Field __index="2" __sourcePath="{}/object/fechaNacimiento" containerType="SINGLE" label="fechaNacimiento" name="fechaNacimiento" type="string"/>
+<Field __index="3" __sourcePath="{}/object/id" containerType="SINGLE" label="id" name="id" type="integer"/>
+<Field __index="4" __sourcePath="{}/object/nombre" containerType="SINGLE" label="nombre" name="nombre" type="string"/>
+<Field __index="5" __sourcePath="{}/object/sexo" containerType="SINGLE" label="sexo" name="sexo" type="string"/>
+</Record>
+</Metadata>
+<Metadata __referenceCounter="1" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _type="Output" id="4ff1bcdd-9e28-4dca-b0b3-b85ed422cfa4">
+<Record fieldDelimiter="," name="usuarios" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field containerType="SINGLE" label="id" name="id" size="10" type="integer"/>
+<Field containerType="SINGLE" label="sexo" name="sexo" size="10" type="string"/>
+<Field containerType="SINGLE" label="nombre" name="nombre" size="10" type="string"/>
+<Field containerType="SINGLE" label="apellido1" name="apellido1" size="10" type="string"/>
+<Field containerType="SINGLE" label="apellido2" name="apellido2" size="10" type="string"/>
+<Field containerType="SINGLE" eofAsDelimiter="true" label="fechaNacimiento" name="fechaNacimiento" size="10" type="string"/>
+<Field __artificialType="_id" name="__id" type="long"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:inputPayload" guiName="Pojo READER" guiX="20" guiY="20" id="BEAN_READER0" type="BEAN_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context outPort="0" sequenceField="__id" xpath=".">
+  <Mapping cloverField="apellido1" trim="true" xpath="apellido1"/>
+  <Mapping cloverField="apellido2" trim="true" xpath="apellido2"/>
+  <Mapping cloverField="fechaNacimiento" trim="true" xpath="fechaNacimiento"/>
+  <Mapping cloverField="id" trim="true" xpath="id"/>
+  <Mapping cloverField="nombre" trim="true" xpath="nombre"/>
+  <Mapping cloverField="sexo" trim="true" xpath="sexo"/>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="batch_examples.Usuario"/>
+  <typed-object type="int"/>
+  <typed-object type="batch_examples.Usuario">
+    <typed-object-ref name="apellido1" type-ref="java.lang.String"/>
+    <typed-object-ref name="apellido2" type-ref="java.lang.String"/>
+    <typed-object-ref name="fechaNacimiento" type-ref="java.lang.String"/>
+    <typed-object-ref name="id" type-ref="int"/>
+    <typed-object-ref name="nombre" type-ref="java.lang.String"/>
+    <typed-object-ref name="sexo" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="java.lang.String"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" excludeFields="__id" fileURL="dict:outputPayload" guiName="CSV WRITER" guiX="900" guiY="20" id="DATA_WRITER0" quotedStrings="true" type="DATA_WRITER">
+<attr name="_data_format"><![CDATA[CSV]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'usuarios'" guiX="460" guiY="20" id="FOREACH_OBJECT_USUARIOS" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = str2long(input.__id);
+//END -> DO NOT REMOVE
+output.apellido1 = input.apellido1;
+output.apellido2 = input.apellido2;
+output.fechaNacimiento = input.fechaNacimiento;
+output.id = input.id;
+output.nombre = input.nombre;
+output.sexo = input.sexo;
+]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="BEAN_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="f0e932cc-c6fc-45ee-85c1-c2c07b5f93b5" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_USUARIOS:0"/>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_USUARIOS:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="4ff1bcdd-9e28-4dca-b0b3-b85ed422cfa4" outPort="Port 0 (out)" toNode="DATA_WRITER0:0"/>
+</Phase>
+</Graph>

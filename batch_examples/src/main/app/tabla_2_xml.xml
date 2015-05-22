@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
+http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+    <data-mapper:config name="usuario_map2bean" transformationGraphPath="usuario_map2bean.grf" doc:name="usuario_map2bean"/>
+    <file:connector name="File_Conf_Append" autoDelete="true" outputAppend="true" streaming="true" validateConnections="true" doc:name="File"/>
+    <file:connector name="File_out_noAppend" autoDelete="true" streaming="true" validateConnections="true" doc:name="File"/>
+    <batch:job name="tabla_2_xmlBatch">
+        <batch:input>
+            <poll doc:name="Poll">
+                <schedulers:cron-scheduler expression="0 0 0 1 1 ? *"/>
+                <watermark variable="maxId" default-expression="-1" selector="MAX" selector-expression="#[payload.ID]"/>
+	            <processor-chain doc:name="Processor Chain">
+                    <set-payload value="&lt;usuarios&gt;" doc:name="payload: prefijo"/>
+                    <file:outbound-endpoint path="${dir}" outputPattern="usuarios.xml" connector-ref="File_out_noAppend" responseTimeout="10000" doc:name="File"/>
+	                <db:select config-ref="Generic_Database_Configuration" streaming="true" doc:name="db-sel: usuarios">
+	                    <db:parameterized-query><![CDATA[select ID,SEXO,NOMBRE,APELLIDO1,APELLIDO2,FN from USUARIOS where ID > #[maxId]]]></db:parameterized-query>
+	                </db:select>
+                </processor-chain>
+            </poll>
+            <logger level="INFO" doc:name="Logger"/>
+        </batch:input>
+        <batch:process-records>
+            <batch:step name="Batch_Step">
+                <data-mapper:transform config-ref="usuario_map2bean" doc:name="usuario_map2bean"/>
+                <expression-component doc:name="expr:bussiness logic map2bean"><![CDATA[batch_examples.BussinesLogic.logic("map2bean", 5000);]]></expression-component>
+            </batch:step>
+            <batch:step name="Batch_Step1">
+                <mulexml:object-to-xml-transformer doc:name="Object to XML"/>
+                <expression-component doc:name="expr:bussiness logic object-to-xml"><![CDATA[batch_examples.BussinesLogic.logic("object-to-xml", 5000);]]></expression-component>
+                <file:outbound-endpoint path="${dir}" outputPattern="usuarios.xml" connector-ref="File_Conf_Append" responseTimeout="10000" doc:name="File"/>
+            </batch:step>
+        </batch:process-records>
+        <batch:on-complete>
+            <logger level="INFO" doc:name="Logger"/>
+            <set-payload value="&lt;/usuarios&gt;" doc:name="payload: sufijo"/>
+            <file:outbound-endpoint path="${dir}" outputPattern="usuarios.xml" connector-ref="File_Conf_Append" responseTimeout="10000" doc:name="File"/>
+        </batch:on-complete>
+    </batch:job>
+</mule>

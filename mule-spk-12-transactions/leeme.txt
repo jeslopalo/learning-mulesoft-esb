@@ -1,0 +1,27 @@
+* BBDD H2:
+driverClass: org.h2.Driver
+url: jdbc:h2:tcp://10.134.134.40/formacion<X>;MODE=Oracle;IFEXISTS=TRUE;USER=sa
+usuario: sa
+dependencia maven:
+<groupId>com.h2database</groupId>
+<artifactId>h2</artifactId>
+<version>1.3.176</version>
+
+
+
+
+
+
+
+
+* BBDD DERBY:
+driverClass: org.apache.derby.jdbc.ClientDriver
+url: jdbc:derby://10.134.134.40:1527/formacion;create=false
+usuario: 
+dependencia maven:
+<groupId>org.apache.derby</groupId>
+<artifactId>derby</artifactId>
+<version>10.11.1.1</version>
+
+
+jdbc:derby:firstdb;create=true

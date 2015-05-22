@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+    <data-mapper:config name="usuarios_csv2map" transformationGraphPath="usuarios_csv2map.grf" doc:name="usuarios_csv2map"/>
+    <batch:job name="csv_2_tablaBatch" max-failed-records="10">
+        <batch:threading-profile maxThreadsActive="5" poolExhaustedAction="WAIT"/>
+        <batch:input>
+            <file:inbound-endpoint path="${dir}\ingest" responseTimeout="10000" doc:name="File" connector-ref="File_Conf_Append"/>
+            <data-mapper:transform config-ref="usuarios_csv2map" stream="true" doc:name="usuarios_csv2map"/>
+        </batch:input>
+        <batch:process-records>
+            <batch:step name="Batch_Step">
+                <expression-component doc:name="expr:bussiness logic 1"><![CDATA[batch_examples.BussinesLogic.logic("1", 1000);]]></expression-component>
+            </batch:step>
+            <batch:step name="Batch_Step2">
+                <expression-component doc:name="expr:bussiness logic 2"><![CDATA[batch_examples.BussinesLogic.logic("2", 2000);]]></expression-component>
+            </batch:step>
+            <batch:step name="Final_Batch_Step">
+                <expression-component doc:name="expr:bussiness logic SAVE"><![CDATA[batch_examples.BussinesLogic.logic("SAVE(commit size 50)", 2000);]]></expression-component>
+                <batch:commit doc:name="batch commit size: 50" size="50">
+                    <db:insert config-ref="Generic_Database_Configuration" bulkMode="true" doc:name="insert: usuarios">
+                        <db:parameterized-query><![CDATA[insert into usuarios(ID,SEXO,NOMBRE,APELLIDO1,APELLIDO2,FN)
+values (#[payload.id],#[payload.sexo],#[payload.nombre],#[payload.apellido1],#[payload.apellido2],#[payload.fechaNacimiento])]]></db:parameterized-query>
+                    </db:insert>
+                </batch:commit>
+            </batch:step>
+        </batch:process-records>
+        <batch:on-complete>
+            <logger level="INFO" doc:name="log: payload"/>
+        </batch:on-complete>
+    </batch:job>
+</mule>

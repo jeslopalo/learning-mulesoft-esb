@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="usuario" created="Thu May 21 15:07:17 CEST 2015" description="CSV To Map" guiVersion="3.4.4.P" id="1432290350629" licenseCode="Unlicensed" licenseType="Unknown" modified="Thu May 21 15:07:17 CEST 2015" modifiedBy="usuario" name="CSV_To_Map" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __referenceCounter="1" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _type="Input" id="9dfe5b3a-d624-44c2-bb5b-7df067c786e6">
+<Record fieldDelimiter="," name="usuarios" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field containerType="SINGLE" label="id" name="id" size="10" type="string"/>
+<Field containerType="SINGLE" label="sexo" name="sexo" size="10" type="string"/>
+<Field containerType="SINGLE" label="nombre" name="nombre" size="10" type="string"/>
+<Field containerType="SINGLE" label="primer_apellido" name="primer_apellido" size="10" type="string"/>
+<Field containerType="SINGLE" label="segundo_apellido" name="segundo_apellido" size="10" type="string"/>
+<Field containerType="SINGLE" eofAsDelimiter="true" label="fn" name="fn" size="10" type="string"/>
+<Field __artificialType="_id" auto_filling="global_row_count" name="__id" type="long"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/usuarios" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _type="Output" id="a150a6f7-26bc-4b15-a61b-19c332d6e4da">
+<Record fieldDelimiter="," name="usuarios" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="5" __sourcePath="{}/usuarios/fn" containerType="SINGLE" label="fn" name="fn" type="string"/>
+<Field __index="0" __sourcePath="{}/usuarios/id" containerType="SINGLE" label="id" name="id" type="string"/>
+<Field __index="2" __sourcePath="{}/usuarios/nombre" containerType="SINGLE" label="nombre" name="nombre" type="string"/>
+<Field __index="3" __sourcePath="{}/usuarios/primer_x005fapellido" containerType="SINGLE" label="primer_apellido" name="primer_apellido" type="string"/>
+<Field __index="4" __sourcePath="{}/usuarios/segundo_x005fapellido" containerType="SINGLE" label="segundo_apellido" name="segundo_apellido" type="string"/>
+<Field __index="1" __sourcePath="{}/usuarios/sexo" containerType="SINGLE" label="sexo" name="sexo" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="CSV READER" guiX="20" guiY="20" id="DATA_READER0" quoteCharacter="both" quotedStrings="true" skipRows="0" trim="true" type="DATA_READER">
+<attr name="_data_format"><![CDATA[CSV]]></attr>
+<attr name="__dataSourceDefinition"><![CDATA[${Project_Home}/usuarios.csv]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'usuarios' -&gt; 'usuarios'" guiX="460" guiY="20" id="FOREACH_USUARIOS_USUARIOS" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = num2str(input.__id);
+//END -> DO NOT REMOVE
+output.id = input.id;
+output.sexo = input.sexo;
+output.nombre = input.nombre;
+output.primer_apellido = input.primer_apellido;
+output.segundo_apellido = input.segundo_apellido;
+output.fn = input.fn;
+]]></attr>
+</Node>
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Map&lt;k,v&gt; WRITER" guiX="900" guiY="20" id="MAP_WRITER0" type="MAP_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:collection clover:name="usuarios" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping">
+  <item clover:inPort="0">
+    <id>$0.id</id>
+    <sexo>$0.sexo</sexo>
+    <nombre>$0.nombre</nombre>
+    <clover:element clover:name="primer_apellido">$0.primer_apellido</clover:element>
+    <clover:element clover:name="segundo_apellido">$0.segundo_apellido</clover:element>
+    <fn>$0.fn</fn>
+  </item>
+</clover:collection>]]></attr>
+<attr name="_data_format"><![CDATA[MAP]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="DATA_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="9dfe5b3a-d624-44c2-bb5b-7df067c786e6" outPort="Port 0 (output)" toNode="FOREACH_USUARIOS_USUARIOS:0"/>
+<Edge debugMode="true" fromNode="FOREACH_USUARIOS_USUARIOS:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="a150a6f7-26bc-4b15-a61b-19c332d6e4da" outPort="Port 0 (out)" toNode="MAP_WRITER0:0"/>
+</Phase>
+</Graph>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:jbossts="http://www.mulesoft.org/schema/mule/jbossts"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/jbossts http://www.mulesoft.org/schema/mule/jbossts/current/mule-jbossts.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
+	<context:property-placeholder location="transaction_examples.properties" />
+
+	<spring:beans />
+	<db:generic-config name="Generic_Database_Configuration"
+		doc:name="Generic Database Configuration" 
+		url="${db.arceweb.jdbc.url};USER=${db.arceweb.user};PASSWORD=${db.arceweb.password}" driverClassName="${db.arceweb.jdbc.driverName}" useXaTransactions="true" />
+	<db:generic-config name="Generic_Database_Configuration_2"
+		doc:name="Generic Database Configuration" 
+		url="${db.arceweb.jdbc.url};USER=${db.arceweb.user};PASSWORD=${db.arceweb.password}" driverClassName="${db.arceweb.jdbc.driverName}" useXaTransactions="true" />
+
+	<jms:activemq-xa-connector name="Active_MQ"
+		brokerURL="vm://localhost" validateConnections="true" doc:name="Active MQ" />
+	<jbossts:transaction-manager doc:name="JBoss Transaction Manager" />
+
+    <flow name="flow_readJMS">
+        <jms:inbound-endpoint queue="trans" connector-ref="Active_MQ" doc:name="JMS"/>
+        <logger level="INFO" doc:name="Logger" category="formacion.mule[flow_readJMS]]" message="#[payload]"/>
+    </flow>
+
+</mule>

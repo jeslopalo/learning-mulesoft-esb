@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:jbossts="http://www.mulesoft.org/schema/mule/jbossts" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:jms="http://www.mulesoft.org/schema/mule/jms" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/jbossts http://www.mulesoft.org/schema/mule/jbossts/current/mule-jbossts.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+    <flow name="trans3_epFlow">
+        <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" path="3" doc:name="HTTP"/>
+        <expression-component doc:name="expr: entrada test"><![CDATA[flowVars.id= message.inboundProperties.'http.query.params'.id;
+flowVars.fail = "1"== message.inboundProperties.'http.query.params'.fail;
+payload="Mensaje desde trans2_ep.xml";]]></expression-component>
+        <ee:xa-transactional action="ALWAYS_BEGIN" doc:name="Transactional">
+            <logger message="on transaction, before jms" level="INFO" category="formacion.mule[trans2_epFlow1]]" doc:name="Logger"/>
+            <db:insert config-ref="Generic_Database_Configuration" transactionalAction="ALWAYS_JOIN" doc:name="Database">
+                <db:parameterized-query><![CDATA[insert into usuarios(ID,SEXO,NOMBRE,APELLIDO1,APELLIDO2,FN)
+values (#[flowVars.id],'M','Pepa','Pig','Core dumped','2010-01-01')]]></db:parameterized-query>
+            </db:insert>
+            <logger message="after jms, before sql" level="INFO" category="formacion.mule[trans2_epFlow1]]" doc:name="Logger"/>
+            <db:insert config-ref="Generic_Database_Configuration_2" transactionalAction="ALWAYS_JOIN" doc:name="Database">
+                <db:parameterized-query><![CDATA[insert into usuarios2(ID,SEXO,NOMBRE,APELLIDO1,APELLIDO2,FN)
+values (#[flowVars.id+1],'M','Pepa','Pig','Core dumped','2010-01-01')]]></db:parameterized-query>
+            </db:insert>
+            <logger message="after sql..." level="INFO" category="formacion.mule[trans2_epFlow1]]" doc:name="Logger"/>
+            <choice doc:name="Choice">
+                <when expression="#[flowVars.fail]">
+                    <logger message="About to fail!" level="INFO" category="formacion.mule[trans2_epFlow1]]" doc:name="Logger"/>
+                    <scripting:component doc:name="Groovy: RuntimeException">
+                        <scripting:script engine="Groovy"><![CDATA[throw new RuntimeException("Forced FAIL!");]]></scripting:script>
+                    </scripting:component>
+                </when>
+                <otherwise>
+                    <logger message="Done, commit!" level="INFO" category="formacion.mule[trans2_epFlow1]]" doc:name="Logger"/>
+                    <set-payload value="ok!" doc:name="Set Payload"/>
+                </otherwise>
+            </choice>
+            <rollback-exception-strategy doc:name="Rollback Exception Strategy">
+                <set-payload value="ERROR: #[message]" doc:name="Set Payload"/>
+            </rollback-exception-strategy>
+        </ee:xa-transactional>
+        <catch-exception-strategy doc:name="Catch Exception Strategy">
+            <set-payload value="ERROR: #[message.payload]" doc:name="Copy_of_Set Payload"/>
+        </catch-exception-strategy>
+    </flow>
+</mule>

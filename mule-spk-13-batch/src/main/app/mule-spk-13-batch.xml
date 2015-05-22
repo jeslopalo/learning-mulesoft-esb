@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:batch="http://www.mulesoft.org/schema/mule/batch" xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/batch http://www.mulesoft.org/schema/mule/batch/current/mule-batch.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+    <data-mapper:config name="CSV_To_Map" transformationGraphPath="csv_to_map.grf" doc:name="CSV_To_Map"/>
+		<db:generic-config name="Generic_Database_Configuration" url="jdbc:h2:tcp://10.134.134.40/formacion6;MODE=Oracle;IFEXISTS=TRUE;USER=sa" driverClassName="org.h2.Driver" useXaTransactions="true" doc:name="Generic Database Configuration">
+        <db:pooling-profile maxPoolSize="20"/>
+    </db:generic-config>    
+    <batch:job name="mule-spk-13-batchBatch" max-failed-records="10">
+        <batch:threading-profile maxThreadsActive="20" poolExhaustedAction="WAIT"/>
+        <batch:input>
+            <file:inbound-endpoint path="C:\Users\usuario\Desktop\temporal" fileAge="10000" responseTimeout="10000" doc:name="File">
+            </file:inbound-endpoint>
+            <data-mapper:transform config-ref="CSV_To_Map" stream="true" doc:name="CSV To Map"/>
+        </batch:input>
+        <batch:process-records>
+            <batch:step name="Batch_Step">
+                <batch:commit size="50" doc:name="Copy_of_Batch Commit">
+                    <db:insert config-ref="Generic_Database_Configuration" bulkMode="true" doc:name="Copy_of_Oracle">
+                        <db:parameterized-query><![CDATA[insert into USUARIOS (ID,SEXO,NOMBRE,APELLIDO1,APELLIDO2,FN) 
+values (#[payload.id],#[payload.sexo],#[payload.nombre],#[payload.primer_apellido],#[payload.segundo_apellido],#[payload.fn])]]></db:parameterized-query>
+                    </db:insert>
+                </batch:commit>
+            </batch:step>
+            <batch:step name="Batch_Step1" accept-policy="ONLY_FAILURES">
+                <logger message="errores en  #[payload.usuarios.size]" level="INFO" doc:name="Logger"/>
+            </batch:step>
+        </batch:process-records>
+        <batch:on-complete>
+            <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        </batch:on-complete>
+    </batch:job>
+</mule>

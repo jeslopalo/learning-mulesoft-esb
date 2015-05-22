@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
+    <context:property-placeholder location="batch_examples.properties"/>
+    
+    <spring:beans>
+		<spring:bean id="connect"
+			class="org.enhydra.jdbc.standard.StandardConnectionPoolDataSource">
+			<spring:property name="driverName"
+				value="${db.arceweb.jdbc.driverName}" />
+			<spring:property name="url"
+				value="${db.arceweb.jdbc.url}" />
+			<spring:property name="preparedStmtCacheSize"
+				value="${db.pool.preparedStmtCacheSize:0}" />
+		</spring:bean>
+		<spring:bean id="dataSource"
+			class="org.enhydra.jdbc.pool.StandardPoolDataSource" destroy-method="shutdown"
+			depends-on="connect">
+			<spring:constructor-arg ref="connect" index="0" />
+			<spring:property name="user" value="${db.arceweb.user}" />
+			<spring:property name="password" value="${db.arceweb.password}" />
+			<spring:property name="minSize" value="${db.pool.mixSize:0}" />
+			<spring:property name="maxSize" value="${db.pool.maxSize:5}" />
+			<spring:property name="lifeTime"
+				value="${db.pool.lifeTime:60000}" />
+			<spring:property name="sleepTime"
+				value="${db.pool.sleepTime:10000}" />
+			<spring:property name="jdbcTestStmt"
+				value="${db.pool.jdbcTestStmt:select 1 from dual}" />
+			<spring:property name="generation" value="${db.pool.generation:1}" />
+			<spring:property name="deadLockMaxWait"
+				value="${db.pool.deadLockMaxWait:10000}" />
+			<spring:property name="deadLockRetryWait"
+				value="${db.pool.deadLockRetryWait:10000}" />
+			<spring:property name="checkLevelObject"
+				value="${db.pool.checkLevelObject:2}" />
+		</spring:bean>
+	</spring:beans>
+    <db:generic-config name="Generic_Database_Configuration" dataSource-ref="dataSource" doc:name="Generic Database Configuration"/>
+    
+</mule>
